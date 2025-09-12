@@ -1,10 +1,9 @@
 //configuracion del server
 
-
-
 import express, {Application, Request, Response} from 'express'
 import db from '../db/connection'
 import cors from 'cors'
+import router from '../routes/rutaas';
 
 class Server{
     private app: Application;
@@ -29,9 +28,10 @@ class Server{
     routes(){
         this.app.get('/', (req: Request, res: Response)=>{
             res.json({
-                msg:'Api Working'
+                msg:'Api Workingaaaaa'
             })
         })
+        this.app.use('/api/', router)
     }
 
      midlewares(){
