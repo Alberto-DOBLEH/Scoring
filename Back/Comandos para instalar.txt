@@ -1,0 +1,13 @@
+//Asegurate de tener instalado typescript
+
+npm install -g nodemon
+
+tsc init
+
+tsc 
+
+npm i express  //framework que crea la api REST
+
+npm i dotenv cors //permite configurar variables de entorno 
+
+npm i sequelize mysql2 //Permite conectarnos a la base de datos
