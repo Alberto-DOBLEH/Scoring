@@ -18,7 +18,7 @@ class Alternativa {
     añadir(body) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield Alternativamodel_1.default.create(body);
+                yield Alternativamodel_1.default.create(body); //añade datos a la tabla
                 console.log(body);
                 return "alternativa añadida";
             }
@@ -33,7 +33,7 @@ class Alternativa {
             try {
                 return yield Alternativamodel_1.default.findOne({
                     where: {
-                        id_proyecto: id_proyecto
+                        id_proyecto: id_proyecto //lista de la tabla
                     }
                 });
             }

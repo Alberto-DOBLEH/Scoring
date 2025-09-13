@@ -4,7 +4,7 @@ export class Alternativa {
 
     async añadir(body: any){
         try{
-            await Alternativamodel.create(body)
+            await Alternativamodel.create(body) //añade datos a la tabla
             console.log(body)
             return "alternativa añadida"
         }catch(error){
@@ -17,7 +17,7 @@ export class Alternativa {
         try{
             return await Alternativamodel.findOne({
                 where:{
-                    id_proyecto:id_proyecto
+                    id_proyecto:id_proyecto //lista de la tabla
                 }
             })
         }catch(error){

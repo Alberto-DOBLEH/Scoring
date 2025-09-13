@@ -1,4 +1,5 @@
 "use strict";
+//Estos models basicamente son como esta creada la tabla, los nombres de cada camppd deben ser los mismos de las columnas de la tabla
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };

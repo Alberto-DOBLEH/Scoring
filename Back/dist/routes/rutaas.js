@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 //Aqui se configuran las rutas de los endpoints
+//cada funcion en controladores.ts se debe llamar desde aqui con el endpoint que hayas creado
 const express_1 = require("express");
 const controladores_1 = require("../controllers/controladores");
 const router = (0, express_1.Router)();
