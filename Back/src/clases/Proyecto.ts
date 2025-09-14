@@ -1,23 +1,23 @@
-import Alternativamodel from "../models/Alternativamodel";
+import Proyectomodel from "../models/Proyectomodel";
 
-export class Alternativa {
+export class Proyecto {
 
     async añadir(body: any){
         try{
-            await Alternativamodel.create(body) //añade datos a la tabla
+            await Proyectomodel.create(body) //añade datos a la tabla
             console.log(body)
-            return "alternativa añadida"
+            return "Proyecto añadido"
         }catch(error){
             console.error(error)
-            return "No se pudo añadir la alternativa"
+            return "No se pudo añadir el proyecto"
         }
     }
 
     async obtener(id_proyecto:number){
         try{
-            return await Alternativamodel.findOne({
+            return await Proyectomodel.findOne({
                 where:{
-                    id_proyecto:id_proyecto //lista de la tabla
+                    id_proyecto:id_proyecto
                 }
             })
         }catch(error){
@@ -26,4 +26,4 @@ export class Alternativa {
         }
     }
     
-} 
+}

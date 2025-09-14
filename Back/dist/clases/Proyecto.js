@@ -12,28 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Alternativa = void 0;
-const Alternativamodel_1 = __importDefault(require("../models/Alternativamodel"));
-class Alternativa {
+exports.Proyecto = void 0;
+const Proyectomodel_1 = __importDefault(require("../models/Proyectomodel"));
+class Proyecto {
     añadir(body) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield Alternativamodel_1.default.create(body); //añade datos a la tabla
+                yield Proyectomodel_1.default.create(body); //añade datos a la tabla
                 console.log(body);
-                return "alternativa añadida";
+                return "Proyecto añadido";
             }
             catch (error) {
                 console.error(error);
-                return "No se pudo añadir la alternativa";
+                return "No se pudo añadir el proyecto";
             }
         });
     }
     obtener(id_proyecto) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield Alternativamodel_1.default.findOne({
+                return yield Proyectomodel_1.default.findOne({
                     where: {
-                        id_proyecto: id_proyecto //lista de la tabla
+                        id_proyecto: id_proyecto
                     }
                 });
             }
@@ -44,4 +44,4 @@ class Alternativa {
         });
     }
 }
-exports.Alternativa = Alternativa;
+exports.Proyecto = Proyecto;

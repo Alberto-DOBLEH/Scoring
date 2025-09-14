@@ -12,26 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Alternativa = void 0;
-const Alternativamodel_1 = __importDefault(require("../models/Alternativamodel"));
-class Alternativa {
+exports.Satisfaccion = void 0;
+const Satisfaccionmodel_1 = __importDefault(require("../models/Satisfaccionmodel"));
+class Satisfaccion {
     añadir(body) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield Alternativamodel_1.default.create(body); //añade datos a la tabla
+                yield Satisfaccionmodel_1.default.create(body); //añade datos a la tabla
                 console.log(body);
-                return "alternativa añadida";
+                return "Satisfaccion añadida";
             }
             catch (error) {
                 console.error(error);
-                return "No se pudo añadir la alternativa";
+                return "No se pudo añadir la satisfaccion";
             }
         });
     }
     obtener(id_proyecto) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield Alternativamodel_1.default.findOne({
+                return yield Satisfaccionmodel_1.default.findOne({
                     where: {
                         id_proyecto: id_proyecto //lista de la tabla
                     }
@@ -44,4 +44,4 @@ class Alternativa {
         });
     }
 }
-exports.Alternativa = Alternativa;
+exports.Satisfaccion = Satisfaccion;

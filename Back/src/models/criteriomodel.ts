@@ -1,21 +1,21 @@
-//Estos models basicamente son como esta creada la tabla, los nombres de cada camppd deben ser los mismos de las columnas de la tabla
-
 import db from "../db/connection";
 import { DataTypes } from "sequelize";
 
-const Alternativamodel = db.define(
-  "alternativa",
+const Criteriomodel = db.define(
+  "criterio",
   {
     //en db.define se pone el nombre de la tabla al que pertenece este modelo
-    id_alternativa: {
+    id_criterio: {
       type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true,
     },
     id_proyecto: {
       type: DataTypes.INTEGER,
     },
     nombre: {
+      type: DataTypes.STRING,
+    },
+    ponderacion: {
       type: DataTypes.STRING,
     },
   },
@@ -24,4 +24,4 @@ const Alternativamodel = db.define(
     timestamps: false,
   }
 );
-export default Alternativamodel;
+export default Criteriomodel;

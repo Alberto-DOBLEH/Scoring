@@ -9,9 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createalternativa = exports.getalternativas = exports.prueba = void 0;
+exports.createsatisfaccion = exports.getsatisfaccion = exports.createproyecto = exports.getproyectos = exports.createcriterio = exports.getcriterios = exports.createalternativa = exports.getalternativas = exports.prueba = void 0;
 //Aqui va la logica que hay en cada endpoint
 const Alternativa_1 = require("../clases/Alternativa");
+const Criterio_1 = require("../clases/Criterio");
+const Proyecto_1 = require("../clases/Proyecto");
+const Satisfaccion_1 = require("../clases/Satisfaccion");
 const prueba = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("funciona");
     res.json({
@@ -36,3 +39,54 @@ const createalternativa = (req, res) => {
     });
 };
 exports.createalternativa = createalternativa;
+const getcriterios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id_proyecto } = req.params;
+    console.log(id_proyecto);
+    const criterio = new Criterio_1.Criterio();
+    const listacriterios = yield criterio.obtener(parseInt(id_proyecto)); //se listan los criterios de un proyecto especifico
+    res.json(listacriterios);
+});
+exports.getcriterios = getcriterios;
+const createcriterio = (req, res) => {
+    const { body } = req;
+    const criterio = new Criterio_1.Criterio();
+    const criterio_añadido = criterio.añadir(body); //añade criterios
+    res.json({
+        msg: criterio_añadido
+    });
+};
+exports.createcriterio = createcriterio;
+const getproyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id_proyecto } = req.params;
+    console.log(id_proyecto);
+    const proyecto = new Proyecto_1.Proyecto();
+    const listaproyectos = yield proyecto.obtener(parseInt(id_proyecto)); //se listan los proyectos de un usuario especifico
+    res.json(listaproyectos);
+});
+exports.getproyectos = getproyectos;
+const createproyecto = (req, res) => {
+    const { body } = req;
+    const proyecto = new Proyecto_1.Proyecto();
+    const proyecto_añadido = proyecto.añadir(body); //añade proyectos
+    res.json({
+        msg: proyecto_añadido
+    });
+};
+exports.createproyecto = createproyecto;
+const getsatisfaccion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id_proyecto } = req.params;
+    console.log(id_proyecto);
+    const satisfaccion = new Satisfaccion_1.Satisfaccion();
+    const listasatisfaccion = yield satisfaccion.obtener(parseInt(id_proyecto)); //se listan las satisfacciones de un proyecto especifico
+    res.json(listasatisfaccion);
+});
+exports.getsatisfaccion = getsatisfaccion;
+const createsatisfaccion = (req, res) => {
+    const { body } = req;
+    const satisfaccion = new Satisfaccion_1.Satisfaccion();
+    const satisfaccion_añadida = satisfaccion.añadir(body); //añade satisfacciones
+    res.json({
+        msg: satisfaccion_añadida
+    });
+};
+exports.createsatisfaccion = createsatisfaccion;

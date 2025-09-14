@@ -1,21 +1,21 @@
-import Alternativamodel from "../models/Alternativamodel";
+import Criteriomodel from "../models/criteriomodel";
 
-export class Alternativa {
+export class Criterio {
 
     async añadir(body: any){
         try{
-            await Alternativamodel.create(body) //añade datos a la tabla
+            await Criteriomodel.create(body) //añade datos a la tabla
             console.log(body)
-            return "alternativa añadida"
+            return "Criterio añadido"
         }catch(error){
             console.error(error)
-            return "No se pudo añadir la alternativa"
+            return "No se pudo añadir el criterio"
         }
     }
 
     async obtener(id_proyecto:number){
         try{
-            return await Alternativamodel.findOne({
+            return await Criteriomodel.findOne({
                 where:{
                     id_proyecto:id_proyecto //lista de la tabla
                 }
@@ -26,4 +26,4 @@ export class Alternativa {
         }
     }
     
-} 
+}
