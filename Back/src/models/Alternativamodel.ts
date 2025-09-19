@@ -9,14 +9,13 @@ const Alternativamodel = db.define(
     //en db.define se pone el nombre de la tabla al que pertenece este modelo
     id_alternativa: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+      primaryKey: true
     },
     id_proyecto: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER
     },
     nombre: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING
     },
   },
   {

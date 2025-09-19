@@ -10,14 +10,13 @@ const Alternativamodel = connection_1.default.define("alternativa", {
     //en db.define se pone el nombre de la tabla al que pertenece este modelo
     id_alternativa: {
         type: sequelize_1.DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true,
+        primaryKey: true
     },
     id_proyecto: {
-        type: sequelize_1.DataTypes.INTEGER,
+        type: sequelize_1.DataTypes.INTEGER
     },
     nombre: {
-        type: sequelize_1.DataTypes.STRING,
+        type: sequelize_1.DataTypes.STRING
     },
 }, {
     freezeTableName: true,

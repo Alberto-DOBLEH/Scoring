@@ -23,8 +23,8 @@ export const getalternativas = async (req:Request, res:Response) =>{
 export const createalternativa = (req: Request, res: Response) =>{
     const {body} = req;
     const alternativa = new Alternativa();
-
-    const alternativa_añadida =  alternativa.añadir(body); //añade alternativas
+    
+    const alternativa_añadida = alternativa.añadir(body); //añade alternativas
 
     res.json({
         msg: alternativa_añadida
