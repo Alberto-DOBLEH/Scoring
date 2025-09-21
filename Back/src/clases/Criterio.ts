@@ -25,5 +25,30 @@ export class Criterio {
             return ("Ha ocurrido un error al buscar la lista")
         }
     }
+
+    async eliminar(id_criterio:number){
+        try{
+            return await Criteriomodel.destroy({
+                where:{
+                    id_criterio:id_criterio
+                }
+            })
+        }catch(error){
+            console.log(error)
+            return ("Ha ocurrido un error al eliminar el criterio")
+        }
+    }
+
+    async editar(body:any, id:number){
+        try {
+            const criterio =await Criteriomodel.findByPk(id)
+
+            await criterio?.update(body)
+            return("criterio editada con exito")
+        } catch (error) {
+            console.log(error)
+            return("error al editar la criterio")
+        }
+    } 
     
 }

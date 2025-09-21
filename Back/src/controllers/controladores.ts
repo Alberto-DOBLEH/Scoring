@@ -12,6 +12,8 @@ export const prueba = async(req:Request, res:Response)=>{
     })
 }
 
+
+//CRUD ALTERNATIVAS
 export const getalternativas = async (req:Request, res:Response) =>{
     const {id_proyecto} = req.params;
     console.log(id_proyecto)
@@ -31,6 +33,31 @@ export const createalternativa = (req: Request, res: Response) =>{
     }) 
 }
 
+export const deletealternativa = (req:Request, res:Response) =>{
+    const {id} = req.params;
+    const alternativa = new Alternativa();
+
+    const eliminado = alternativa.eliminar(parseInt(id));
+
+    res.json({
+        msg:eliminado
+    })
+}
+
+export const editalternativa = (req:Request, res:Response) =>{
+    const {body} = req;
+    const {id} = req.body
+
+    const alternativa = new Alternativa();
+    const editado = alternativa.editar(body, parseInt(id))
+
+    res.json({
+        msg:editado
+    })
+}
+
+
+//CRUD CRITERIO
 export const getcriterios = async (req:Request, res:Response) =>{
     const {id_proyecto} = req.params;
     console.log(id_proyecto)
@@ -48,6 +75,31 @@ export const createcriterio = (req: Request, res: Response) =>{
     }) 
 }
 
+export const deletecriterio = (req:Request, res:Response) =>{
+    
+    const {id} = req.params;
+    const criterio = new Criterio();
+
+    const eliminado = criterio.eliminar(parseInt(id));
+
+    res.json({
+        msg:eliminado
+    })
+}
+
+export const editcriterio = (req:Request, res:Response) =>{
+    const {body} = req;
+    const {id} = req.body
+
+    const criterio = new Criterio();
+    const editado = criterio.editar(body, parseInt(id))
+
+    res.json({
+        msg:editado
+    })
+}
+
+//CRUD PROYECTOS
 export const getproyectos = async (req:Request, res:Response) =>{
     const {id_proyecto} = req.params;
     console.log(id_proyecto)
@@ -65,6 +117,33 @@ export const createproyecto = (req: Request, res: Response) =>{
     }) 
 }
 
+export const deleteproeycto = (req:Request, res:Response) =>{
+    
+    const {id} = req.params;
+    const proyecto = new Proyecto();
+
+    const eliminado = proyecto.eliminar(parseInt(id));
+
+    res.json({
+        msg:eliminado
+    })
+}
+
+export const editproyecto = (req:Request, res:Response) =>{
+    const {body} = req;
+    const {id} = req.body
+
+    const proyecto = new Proyecto();
+    const editado = proyecto.editar(body, parseInt(id))
+
+    res.json({
+        msg:editado
+    })
+}
+
+
+
+//CRUD SATISFACION
 export const getsatisfaccion = async (req:Request, res:Response) =>{
     const {id_proyecto} = req.params;
     console.log(id_proyecto)

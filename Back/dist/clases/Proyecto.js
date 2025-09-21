@@ -43,5 +43,33 @@ class Proyecto {
             }
         });
     }
+    eliminar(id_proyecto) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield Proyectomodel_1.default.destroy({
+                    where: {
+                        id_proyecto: id_proyecto
+                    }
+                });
+            }
+            catch (error) {
+                console.log(error);
+                return ("Ha ocurrido un error al eliminar el proyecto");
+            }
+        });
+    }
+    editar(body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const proyecto = yield Proyectomodel_1.default.findByPk(id);
+                yield (proyecto === null || proyecto === void 0 ? void 0 : proyecto.update(body));
+                return ("proyecto editado con exito");
+            }
+            catch (error) {
+                console.log(error);
+                return ("error al editar la proyecto");
+            }
+        });
+    }
 }
 exports.Proyecto = Proyecto;

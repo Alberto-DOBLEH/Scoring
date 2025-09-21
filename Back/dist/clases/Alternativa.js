@@ -43,5 +43,33 @@ class Alternativa {
             }
         });
     }
+    eliminar(id_alternativa) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield Alternativamodel_1.default.destroy({
+                    where: {
+                        id_alternativa: id_alternativa
+                    }
+                });
+            }
+            catch (error) {
+                console.log(error);
+                return ("Ha ocurrido un error al eliminar la alternativa");
+            }
+        });
+    }
+    editar(body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const alternativa = yield Alternativamodel_1.default.findByPk(id);
+                yield (alternativa === null || alternativa === void 0 ? void 0 : alternativa.update(body));
+                return ("Alternativa editada con exito");
+            }
+            catch (error) {
+                console.log(error);
+                return ("error al editar la alternativa");
+            }
+        });
+    }
 }
 exports.Alternativa = Alternativa;

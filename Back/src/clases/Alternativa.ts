@@ -25,5 +25,30 @@ export class Alternativa {
             return ("Ha ocurrido un error al buscar la lista")
         }
     }
+
+    async eliminar(id_alternativa:number){
+        try{
+            return await Alternativamodel.destroy({
+                where:{
+                    id_alternativa:id_alternativa
+                }
+            })
+        }catch(error){
+            console.log(error)
+            return ("Ha ocurrido un error al eliminar la alternativa")
+        }
+    }
+
+    async editar(body:any, id:number){
+        try {
+            const alternativa =await Alternativamodel.findByPk(id)
+
+            await alternativa?.update(body)
+            return("Alternativa editada con exito")
+        } catch (error) {
+            console.log(error)
+            return("error al editar la alternativa")
+        }
+    } 
     
 } 

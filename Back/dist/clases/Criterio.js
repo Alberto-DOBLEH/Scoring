@@ -43,5 +43,33 @@ class Criterio {
             }
         });
     }
+    eliminar(id_criterio) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield criteriomodel_1.default.destroy({
+                    where: {
+                        id_criterio: id_criterio
+                    }
+                });
+            }
+            catch (error) {
+                console.log(error);
+                return ("Ha ocurrido un error al eliminar el criterio");
+            }
+        });
+    }
+    editar(body, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const criterio = yield criteriomodel_1.default.findByPk(id);
+                yield (criterio === null || criterio === void 0 ? void 0 : criterio.update(body));
+                return ("criterio editada con exito");
+            }
+            catch (error) {
+                console.log(error);
+                return ("error al editar la criterio");
+            }
+        });
+    }
 }
 exports.Criterio = Criterio;

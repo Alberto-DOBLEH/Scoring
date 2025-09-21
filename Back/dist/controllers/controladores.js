@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createsatisfaccion = exports.getsatisfaccion = exports.createproyecto = exports.getproyectos = exports.createcriterio = exports.getcriterios = exports.createalternativa = exports.getalternativas = exports.prueba = void 0;
+exports.createsatisfaccion = exports.getsatisfaccion = exports.editproyecto = exports.deleteproeycto = exports.createproyecto = exports.getproyectos = exports.editcriterio = exports.deletecriterio = exports.createcriterio = exports.getcriterios = exports.editalternativa = exports.deletealternativa = exports.createalternativa = exports.getalternativas = exports.prueba = void 0;
 //Aqui va la logica que hay en cada endpoint
 const Alternativa_1 = require("../clases/Alternativa");
 const Criterio_1 = require("../clases/Criterio");
@@ -22,6 +22,7 @@ const prueba = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 exports.prueba = prueba;
+//CRUD ALTERNATIVAS
 const getalternativas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id_proyecto } = req.params;
     console.log(id_proyecto);
@@ -39,6 +40,26 @@ const createalternativa = (req, res) => {
     });
 };
 exports.createalternativa = createalternativa;
+const deletealternativa = (req, res) => {
+    const { id } = req.params;
+    const alternativa = new Alternativa_1.Alternativa();
+    const eliminado = alternativa.eliminar(parseInt(id));
+    res.json({
+        msg: eliminado
+    });
+};
+exports.deletealternativa = deletealternativa;
+const editalternativa = (req, res) => {
+    const { body } = req;
+    const { id } = req.body;
+    const alternativa = new Alternativa_1.Alternativa();
+    const editado = alternativa.editar(body, parseInt(id));
+    res.json({
+        msg: editado
+    });
+};
+exports.editalternativa = editalternativa;
+//CRUD CRITERIO
 const getcriterios = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id_proyecto } = req.params;
     console.log(id_proyecto);
@@ -56,6 +77,26 @@ const createcriterio = (req, res) => {
     });
 };
 exports.createcriterio = createcriterio;
+const deletecriterio = (req, res) => {
+    const { id } = req.params;
+    const criterio = new Criterio_1.Criterio();
+    const eliminado = criterio.eliminar(parseInt(id));
+    res.json({
+        msg: eliminado
+    });
+};
+exports.deletecriterio = deletecriterio;
+const editcriterio = (req, res) => {
+    const { body } = req;
+    const { id } = req.body;
+    const criterio = new Criterio_1.Criterio();
+    const editado = criterio.editar(body, parseInt(id));
+    res.json({
+        msg: editado
+    });
+};
+exports.editcriterio = editcriterio;
+//CRUD PROYECTOS
 const getproyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id_proyecto } = req.params;
     console.log(id_proyecto);
@@ -73,6 +114,26 @@ const createproyecto = (req, res) => {
     });
 };
 exports.createproyecto = createproyecto;
+const deleteproeycto = (req, res) => {
+    const { id } = req.params;
+    const proyecto = new Proyecto_1.Proyecto();
+    const eliminado = proyecto.eliminar(parseInt(id));
+    res.json({
+        msg: eliminado
+    });
+};
+exports.deleteproeycto = deleteproeycto;
+const editproyecto = (req, res) => {
+    const { body } = req;
+    const { id } = req.body;
+    const proyecto = new Proyecto_1.Proyecto();
+    const editado = proyecto.editar(body, parseInt(id));
+    res.json({
+        msg: editado
+    });
+};
+exports.editproyecto = editproyecto;
+//CRUD SATISFACION
 const getsatisfaccion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id_proyecto } = req.params;
     console.log(id_proyecto);
