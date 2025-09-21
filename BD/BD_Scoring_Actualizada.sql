@@ -35,6 +35,15 @@ CREATE TABLE `alternativa` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `alternativa`
+--
+
+LOCK TABLES `alternativa` WRITE;
+/*!40000 ALTER TABLE `alternativa` DISABLE KEYS */;
+/*!40000 ALTER TABLE `alternativa` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `criterio`
 --
 
@@ -45,12 +54,21 @@ CREATE TABLE `criterio` (
   `id_criterio` int NOT NULL,
   `id_proyecto` int NOT NULL,
   `nombre` varchar(45) NOT NULL,
-  `ponderacion` varchar(45) NOT NULL,
+  `ponderacion` int NOT NULL,
   PRIMARY KEY (`id_criterio`),
   KEY `fk_criterio_proyecto_idx` (`id_proyecto`),
   CONSTRAINT `fk_criterio_proyecto` FOREIGN KEY (`id_proyecto`) REFERENCES `proyecto` (`id_proyecto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `criterio`
+--
+
+LOCK TABLES `criterio` WRITE;
+/*!40000 ALTER TABLE `criterio` DISABLE KEYS */;
+/*!40000 ALTER TABLE `criterio` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `proyecto`
@@ -67,6 +85,44 @@ CREATE TABLE `proyecto` (
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `proyecto`
+--
+
+LOCK TABLES `proyecto` WRITE;
+/*!40000 ALTER TABLE `proyecto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `proyecto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ranking`
+--
+
+DROP TABLE IF EXISTS `ranking`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ranking` (
+  `id_ranking` int NOT NULL AUTO_INCREMENT,
+  `id_proyecto` int NOT NULL,
+  `id_alternativa` int NOT NULL,
+  `score` int NOT NULL,
+  PRIMARY KEY (`id_ranking`),
+  KEY `fk_ranking_proyecto_idx` (`id_proyecto`),
+  KEY `fk_ranking_alternativa_idx` (`id_alternativa`),
+  CONSTRAINT `fk_ranking_alternativa` FOREIGN KEY (`id_alternativa`) REFERENCES `alternativa` (`id_alternativa`),
+  CONSTRAINT `fk_ranking_proyecto` FOREIGN KEY (`id_proyecto`) REFERENCES `proyecto` (`id_proyecto`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ranking`
+--
+
+LOCK TABLES `ranking` WRITE;
+/*!40000 ALTER TABLE `ranking` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ranking` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `tabla_satisfaccion`
@@ -90,6 +146,15 @@ CREATE TABLE `tabla_satisfaccion` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `tabla_satisfaccion`
+--
+
+LOCK TABLES `tabla_satisfaccion` WRITE;
+/*!40000 ALTER TABLE `tabla_satisfaccion` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tabla_satisfaccion` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Dumping events for database 'scoring_db'
 --
 
@@ -106,4 +171,4 @@ CREATE TABLE `tabla_satisfaccion` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-09 22:08:38
+-- Dump completed on 2025-09-19 17:25:03
