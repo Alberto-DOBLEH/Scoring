@@ -1,0 +1,96 @@
+Guía: Estado del login/registro y cómo conectarlo a backend en Angular
+
+Resumen actual
+--------------
+- El TypeScript del header (angular/header.ts) NO está conectado a una base de datos.
+- Actualmente simula una API con setTimeout y guarda token/usuario en localStorage.
+- Las alertas/errores que ves fuera de un proyecto Angular son por falta de dependencias en el editor (no encuentra @angular/core, @angular/router, @angular/forms). En un proyecto Angular real, desaparecen.
+
+Qué valida ahora
+----------------
+- Formularios reactivos con validaciones básicas (email requerido/formato, password con longitud mínima, etc.).
+- Si faltan campos o son inválidos, muestra alertas de validación.
+
+Cómo conectarlo a un backend real
+---------------------------------
+1) Importar HttpClientModule en tu app (o en el componente Standalone):
+   - En Standalone: añade HttpClientModule en providers del bootstrap o en imports del componente que lo necesite.
+
+2) Inyectar HttpClient en el constructor:
+   - constructor(private fb: FormBuilder, private router: Router, private http: HttpClient) {}
+
+3) Reemplazar la simulación por llamadas HTTP reales:
+   - Login:
+
+// Ejemplo orientativo (reemplaza URLs/estructura según tu API)
+import { HttpClient } from '@angular/common/http';
+
+async handleLogin(): Promise<void> {
+  if (this.loginForm.invalid) {
+    this.loginForm.markAllAsTouched();
+    return;
+  }
+  this.isLoading = true;
+  try {
+    const body = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    };
+    // Usa tu URL real (puede venir de environment.apiBase)
+    const resp: any = await this.http.post('/api/auth/login', body).toPromise();
+    // Se espera que resp tenga: resp.token y resp.user
+    this.handleAuthSuccess(resp);
+    alert('¡Bienvenido de vuelta!');
+    setTimeout(() => this.closeModal(), 1200);
+  } catch (e: any) {
+    console.error(e);
+    alert(e?.error?.message || 'Error de conexión. Inténtalo más tarde.');
+  } finally {
+    this.isLoading = false;
+  }
+}
+
+   - Registro:
+
+async handleRegister(): Promise<void> {
+  if (this.registerForm.invalid) {
+    this.registerForm.markAllAsTouched();
+    return;
+  }
+  this.isLoading = true;
+  try {
+    const body = this.registerForm.value;
+    const resp: any = await this.http.post('/api/auth/register', body).toPromise();
+    this.handleAuthSuccess(resp);
+    alert('¡Cuenta creada exitosamente!');
+    setTimeout(() => this.closeModal(), 1200);
+  } catch (e: any) {
+    console.error(e);
+    alert(e?.error?.message || 'Error de conexión. Inténtalo más tarde.');
+  } finally {
+    this.isLoading = false;
+  }
+}
+
+4) Manejo de éxito (ya existente):
+   - this.handleAuthSuccess(response) guarda token/user en localStorage y marca isAuthenticated = true.
+
+Buenas prácticas recomendadas
+-----------------------------
+- Usar environment.ts para la URL base de API: environment.apiBase
+- Manejar CORS en backend o proxy en Angular (si hace falta)
+- Reemplazar alert() por un sistema de toasts/notifications (Angular Material, ngx-toastr, etc.)
+- Validar respuestas del backend (status codes y estructura)
+- Proteger rutas con guards si hay secciones que requieren sesión
+- Refrescar tokens/renovar sesión (si tu backend lo soporta)
+
+Dependencias necesarias en tu proyecto Angular
+----------------------------------------------
+- @angular/router (para routerLink y navegación)
+- @angular/forms (ReactiveFormsModule)
+- @angular/common/http (HttpClientModule)
+
+Notas finales
+-------------
+- Mientras no conectes el HttpClient con endpoints reales, el componente funciona como maqueta (mock) para UI/UX y flujos.
+- Al mover los archivos al proyecto Angular, las advertencias del editor por @angular/* desaparecerán.
