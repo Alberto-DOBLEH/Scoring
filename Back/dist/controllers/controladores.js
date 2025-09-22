@@ -9,12 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createsatisfaccion = exports.getsatisfaccion = exports.editproyecto = exports.deleteproeycto = exports.createproyecto = exports.getproyectos = exports.editcriterio = exports.deletecriterio = exports.createcriterio = exports.getcriterios = exports.editalternativa = exports.deletealternativa = exports.createalternativa = exports.getalternativas = exports.prueba = void 0;
+exports.editranking = exports.deleteranking = exports.createranking = exports.getranking = exports.editsatisfaccion = exports.deletesatisfaccion = exports.createsatisfaccion = exports.getsatisfaccion = exports.editproyecto = exports.deleteproeycto = exports.createproyecto = exports.getproyectos = exports.editcriterio = exports.deletecriterio = exports.createcriterio = exports.getcriterios = exports.editalternativa = exports.deletealternativa = exports.createalternativa = exports.getalternativas = exports.prueba = void 0;
 //Aqui va la logica que hay en cada endpoint
 const Alternativa_1 = require("../clases/Alternativa");
 const Criterio_1 = require("../clases/Criterio");
 const Proyecto_1 = require("../clases/Proyecto");
 const Satisfaccion_1 = require("../clases/Satisfaccion");
+const Ranking_1 = require("../clases/Ranking");
 const prueba = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("funciona");
     res.json({
@@ -151,3 +152,59 @@ const createsatisfaccion = (req, res) => {
     });
 };
 exports.createsatisfaccion = createsatisfaccion;
+const deletesatisfaccion = (req, res) => {
+    const { id } = req.params;
+    const satisfaccion = new Satisfaccion_1.Satisfaccion();
+    const eliminado = satisfaccion.eliminar(parseInt(id));
+    res.json({
+        msg: eliminado
+    });
+};
+exports.deletesatisfaccion = deletesatisfaccion;
+const editsatisfaccion = (req, res) => {
+    const { body } = req;
+    const { id } = req.body;
+    const satisfaccion = new Satisfaccion_1.Satisfaccion();
+    const editado = satisfaccion.editar(body, parseInt(id));
+    res.json({
+        msg: editado
+    });
+};
+exports.editsatisfaccion = editsatisfaccion;
+//CRUD RANKING
+const getranking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id_ranking } = req.params;
+    console.log(id_ranking);
+    const ranking = new Ranking_1.Ranking();
+    const listaranking = yield ranking.obtener(parseInt(id_ranking)); //se listan los rankings de un proyecto especifico
+    res.json(listaranking);
+});
+exports.getranking = getranking;
+const createranking = (req, res) => {
+    const { body } = req;
+    const ranking = new Ranking_1.Ranking();
+    const ranking_añadido = ranking.añadir(body); //añade rankings
+    res.json({
+        msg: ranking_añadido
+    });
+};
+exports.createranking = createranking;
+const deleteranking = (req, res) => {
+    const { id } = req.params;
+    const ranking = new Ranking_1.Ranking();
+    const eliminado = ranking.eliminar(parseInt(id));
+    res.json({
+        msg: eliminado
+    });
+};
+exports.deleteranking = deleteranking;
+const editranking = (req, res) => {
+    const { body } = req;
+    const { id } = req.body;
+    const ranking = new Ranking_1.Ranking();
+    const editado = ranking.editar(body, parseInt(id));
+    res.json({
+        msg: editado
+    });
+};
+exports.editranking = editranking;

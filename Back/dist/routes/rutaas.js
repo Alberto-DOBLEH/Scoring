@@ -24,4 +24,11 @@ router.put("/editproyecto", controladores_1.editproyecto); //edita el proyecto
 //CRUD SATISFACION
 router.post("/createsatisfaccion", controladores_1.createsatisfaccion); //añade satisfaccion
 router.get("/getsatisfaccion/:id_proyecto", controladores_1.getsatisfaccion); //lista la satisfaccion de un proyecto
+router.delete("/deletesatisfaccion/:id_proyecto", controladores_1.deletesatisfaccion); //elimina una satisfaccion
+router.put("/editsatisfaccion", controladores_1.editsatisfaccion); //edita la satisfaccion
+//CRUD RANKING
+router.post("/createranking", controladores_1.createranking); //añade ranking
+router.get("/getranking/:id_ranking", controladores_1.getranking); //lista el ranking de un proyecto
+router.delete("/deleteranking/:id_ranking", controladores_1.deleteranking); //elimina un ranking
+router.put("/editranking", controladores_1.editranking); //edita el ranking
 exports.default = router;

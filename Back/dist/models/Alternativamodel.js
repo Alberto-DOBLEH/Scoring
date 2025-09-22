@@ -18,6 +18,9 @@ const Alternativamodel = connection_1.default.define("alternativa", {
     nombre: {
         type: sequelize_1.DataTypes.STRING
     },
+    descripcion: {
+        type: sequelize_1.DataTypes.STRING
+    }
 }, {
     freezeTableName: true,
     timestamps: false,

@@ -12,28 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Satisfaccion = void 0;
-const Satisfaccionmodel_1 = __importDefault(require("../models/Satisfaccionmodel"));
-class Satisfaccion {
+exports.Ranking = void 0;
+const Rankingmodel_1 = __importDefault(require("../models/Rankingmodel"));
+class Ranking {
     añadir(body) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield Satisfaccionmodel_1.default.create(body); //añade datos a la tabla
+                yield Rankingmodel_1.default.create(body); //añade datos a la tabla
                 console.log(body);
-                return "Satisfaccion añadida";
+                return "Ranking añadido";
             }
             catch (error) {
                 console.error(error);
-                return "No se pudo añadir la satisfaccion";
+                return "No se pudo añadir el ranking";
             }
         });
     }
-    obtener(id_proyecto) {
+    obtener(id_ranking) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield Satisfaccionmodel_1.default.findOne({
+                return yield Rankingmodel_1.default.findOne({
                     where: {
-                        id_proyecto: id_proyecto //lista de la tabla
+                        id_ranking: id_ranking //lista de la tabla
                     }
                 });
             }
@@ -43,33 +43,33 @@ class Satisfaccion {
             }
         });
     }
-    eliminar(id_proyecto) {
+    eliminar(id_ranking) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield Satisfaccionmodel_1.default.destroy({
+                return yield Rankingmodel_1.default.destroy({
                     where: {
-                        id_proyecto: id_proyecto
+                        id_ranking: id_ranking
                     }
                 });
             }
             catch (error) {
                 console.log(error);
-                return ("Ha ocurrido un error al eliminar la satisfaccion");
+                return ("Ha ocurrido un error al eliminar el ranking");
             }
         });
     }
     editar(body, id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const satisfaccion = yield Satisfaccionmodel_1.default.findByPk(id);
-                yield (satisfaccion === null || satisfaccion === void 0 ? void 0 : satisfaccion.update(body));
-                return ("satisfaccion editada con exito");
+                const ranking = yield Rankingmodel_1.default.findByPk(id);
+                yield (ranking === null || ranking === void 0 ? void 0 : ranking.update(body));
+                return ("ranking editado con exito");
             }
             catch (error) {
                 console.log(error);
-                return ("error al editar la satisfaccion");
+                return ("error al editar el ranking");
             }
         });
     }
 }
-exports.Satisfaccion = Satisfaccion;
+exports.Ranking = Ranking;

@@ -5,26 +5,27 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const connection_1 = __importDefault(require("../db/connection"));
 const sequelize_1 = require("sequelize");
-const Criteriomodel = connection_1.default.define("criterio", {
+const Rankingmodel = connection_1.default.define('ranking', {
     //en db.define se pone el nombre de la tabla al que pertenece este modelo
-    id_criterio: {
+    id_ranking: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true
     },
     id_proyecto: {
         type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
     },
-    nombre: {
-        type: sequelize_1.DataTypes.STRING,
+    id_alternativa: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
     },
-    ponderacion: {
-        type: sequelize_1.DataTypes.STRING,
-    },
-    descripcion: {
-        type: sequelize_1.DataTypes.STRING,
+    score: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
     freezeTableName: true,
-    timestamps: false,
+    timestamps: false
 });
-exports.default = Criteriomodel;
+exports.default = Rankingmodel;
