@@ -16,14 +16,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const connection_1 = __importDefault(require("../db/connection"));
 const cors_1 = __importDefault(require("cors"));
+const rutaas_1 = __importDefault(require("../routes/rutaas"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '3001';
+        this.midlewares();
         this.listen();
         this.routes();
         this.dbconnect();
-        this.midlewares();
     }
     listen() {
         this.app.listen(this.port, () => {
@@ -33,9 +34,10 @@ class Server {
     routes() {
         this.app.get('/', (req, res) => {
             res.json({
-                msg: 'Api Working'
+                msg: 'Api Workingaaaaa'
             });
         });
+        this.app.use('/api/', rutaas_1.default);
     }
     midlewares() {
         this.app.use(express_1.default.json());
