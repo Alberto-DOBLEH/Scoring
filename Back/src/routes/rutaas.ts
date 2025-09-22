@@ -17,6 +17,12 @@ import {
   editcriterio,
   deleteproeycto,
   editproyecto,
+  deletesatisfaccion,
+  editsatisfaccion,
+  createranking,
+  getranking,
+  deleteranking,
+  editranking
 } from "../controllers/controladores";
 
 const router = Router();
@@ -43,5 +49,13 @@ router.put("/editproyecto", editproyecto); //edita el proyecto
 //CRUD SATISFACION
 router.post("/createsatisfaccion", createsatisfaccion); //añade satisfaccion
 router.get("/getsatisfaccion/:id_proyecto", getsatisfaccion); //lista la satisfaccion de un proyecto
+router.delete("/deletesatisfaccion/:id_proyecto", deletesatisfaccion); //elimina una satisfaccion
+router.put("/editsatisfaccion", editsatisfaccion); //edita la satisfaccion
+
+//CRUD RANKING
+router.post("/createranking", createranking); //añade ranking
+router.get("/getranking/:id_ranking", getranking); //lista el ranking de un proyecto
+router.delete("/deleteranking/:id_ranking", deleteranking); //elimina un ranking
+router.put("/editranking", editranking); //edita el ranking
 
 export default router;

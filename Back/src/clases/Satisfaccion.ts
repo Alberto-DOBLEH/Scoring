@@ -25,5 +25,28 @@ export class Satisfaccion {
             return ("Ha ocurrido un error al buscar la lista")
         }
     }
-    
+
+    async eliminar(id_proyecto:number){
+        try{
+            return await Satisfaccionmodel.destroy({
+                where:{
+                    id_proyecto:id_proyecto
+                }
+            })
+        }catch(error){
+            console.log(error)
+            return ("Ha ocurrido un error al eliminar la satisfaccion")
+        }
+    }
+
+    async editar(body:any, id:number){
+        try {
+            const satisfaccion =await Satisfaccionmodel.findByPk(id)
+            await satisfaccion?.update(body)
+            return("satisfaccion editada con exito")
+        } catch (error) {
+            console.log(error)
+            return("error al editar la satisfaccion")
+        }
+    }
 }

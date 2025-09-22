@@ -17,6 +17,9 @@ const Alternativamodel = db.define(
     nombre: {
       type: DataTypes.STRING
     },
+    descripcion: {
+      type: DataTypes.STRING
+    }
   },
   {
     freezeTableName: true,

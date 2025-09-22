@@ -18,6 +18,9 @@ const Criteriomodel = db.define(
     ponderacion: {
       type: DataTypes.STRING,
     },
+    descripcion: {
+      type: DataTypes.STRING,
+    }
   },
   {
     freezeTableName: true,

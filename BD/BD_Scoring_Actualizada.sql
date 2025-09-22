@@ -28,6 +28,7 @@ CREATE TABLE `alternativa` (
   `id_alternativa` int NOT NULL,
   `id_proyecto` int NOT NULL,
   `nombre` varchar(45) NOT NULL,
+  `descripcion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_alternativa`),
   KEY `fk_alternativa_proyecto_idx` (`id_proyecto`),
   CONSTRAINT `fk_alternativa_proyecto` FOREIGN KEY (`id_proyecto`) REFERENCES `proyecto` (`id_proyecto`)
@@ -55,6 +56,7 @@ CREATE TABLE `criterio` (
   `id_proyecto` int NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `ponderacion` int NOT NULL,
+  `descripcion` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_criterio`),
   KEY `fk_criterio_proyecto_idx` (`id_proyecto`),
   CONSTRAINT `fk_criterio_proyecto` FOREIGN KEY (`id_proyecto`) REFERENCES `proyecto` (`id_proyecto`)
@@ -171,4 +173,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-19 17:25:03
+-- Dump completed on 2025-09-22 10:47:00
