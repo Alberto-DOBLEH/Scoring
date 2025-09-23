@@ -47,10 +47,10 @@ export const deletealternativa = (req:Request, res:Response) =>{
 
 export const editalternativa = (req:Request, res:Response) =>{
     const {body} = req;
-    const {id} = req.body
+    const {id_alternativa} = req.body
 
     const alternativa = new Alternativa();
-    const editado = alternativa.editar(body, parseInt(id))
+    const editado = alternativa.editar(body, parseInt(id_alternativa))
 
     res.json({
         msg:editado
@@ -90,10 +90,10 @@ export const deletecriterio = (req:Request, res:Response) =>{
 
 export const editcriterio = (req:Request, res:Response) =>{
     const {body} = req;
-    const {id} = req.body
+    const {id_criterio} = req.body
 
     const criterio = new Criterio();
-    const editado = criterio.editar(body, parseInt(id))
+    const editado = criterio.editar(body, parseInt(id_criterio))
 
     res.json({
         msg:editado
@@ -132,10 +132,10 @@ export const deleteproeycto = (req:Request, res:Response) =>{
 
 export const editproyecto = (req:Request, res:Response) =>{
     const {body} = req;
-    const {id} = req.body
+    const {id_proyecto} = req.body
 
     const proyecto = new Proyecto();
-    const editado = proyecto.editar(body, parseInt(id))
+    const editado = proyecto.editar(body, parseInt(id_proyecto))
 
     res.json({
         msg:editado
@@ -175,9 +175,9 @@ export const deletesatisfaccion = (req:Request, res:Response) =>{
 
 export const editsatisfaccion = (req:Request, res:Response) =>{
     const {body} = req;
-    const {id} = req.body
+    const {id_proyecto} = req.body
     const satisfaccion = new Satisfaccion();
-    const editado = satisfaccion.editar(body, parseInt(id))
+    const editado = satisfaccion.editar(body, parseInt(id_proyecto))
     res.json({
         msg:editado
     })
@@ -214,9 +214,9 @@ export const deleteranking = (req:Request, res:Response) =>{
 
 export const editranking = (req:Request, res:Response) =>{
     const {body} = req;
-    const {id} = req.body
+    const {id_ranking} = req.body
     const ranking = new Ranking();
-    const editado = ranking.editar(body, parseInt(id))
+    const editado = ranking.editar(body, parseInt(id_ranking))
     res.json({
         msg:editado
     })

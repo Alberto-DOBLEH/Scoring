@@ -15,7 +15,7 @@ router.put("/editalternativa", controladores_1.editalternativa);
 router.post("/createcriterio", controladores_1.createcriterio); //añade criterios
 router.get("/getcriterio/:id_proyecto", controladores_1.getcriterios); //lista los criterios de un proyecto
 router.delete("/deletecriterio/:id", controladores_1.deletecriterio); //elimina un criterio
-router.put("/editalternativa", controladores_1.editcriterio);
+router.put("/editcriterio", controladores_1.editcriterio);
 //CRUD PROYECTOS
 router.post("/createproyecto", controladores_1.createproyecto); //añade proyectos
 router.get("/getproyecto/:id_proyecto", controladores_1.getproyectos); //lista los proyectos de un usuario
