@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { Header } from "../header/header";
 
 @Component({
-  selector: 'app-alter-crit',
+  selector: 'app-criterios',
   imports: [Header],
-  templateUrl: './alter-crit.html',
-  styleUrl: './alter-crit.css'
+  templateUrl: './criterios.html',
+  styleUrl: './criterios.css'
 })
-export class AlterCrit {
+export class Criterios {
 
 }

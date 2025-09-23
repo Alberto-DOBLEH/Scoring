@@ -1,84 +1,32 @@
-<header class="header" id="header">
-      <nav class="nav-container">
-          <!-- Logo Section -->
-          <div class="logo-section" id="logoSection">
-              <div class="logo-container">
-                  <!-- Ocultamos el placeholder y mostramos solo la imagen -->
-                  <img src="logotest.jpg" alt="DeciWeb" style="width: 100%; height: 100%; object-fit: contain;">
-              </div>
-              <div class="brand-text">DeciWeb</div>
-          </div>
+<app-header></app-header>
+<div class="alternativas-card">
+  <h2>Alternativas</h2>
 
-          <!-- Navigation Menu -->
-          <div class="nav-menu">
-              <a href="#inicio" class="nav-item" data-section="inicio">
-                  <span>Inicio</span>
-              </a>
-              <a href="#analisis" class="nav-item active" data-section="analisis">
-                  <span>Análisis</span>
-              </a>
-              <a href="#decisiones" class="nav-item" data-section="decisiones">
-                  <span>Decisiones</span>
-              </a>
-              <a href="#reportes" class="nav-item" data-section="reportes">
-                  <span>Reportes</span>
-              </a>
-              <a href="#configuracion" class="nav-item" data-section="configuracion">
-                  <span>Configuración</span>
-              </a>
-          </div>
-
-          <!-- Menu usuario -->
-          <div class="user-menu" id="userMenu">
-              <button class="user-button" id="userButton">
-                  <div class="user-icon">👤</div>
-                  <span>Cuenta</span>
-                  <span class="dropdown-arrow">▼</span>
-              </button>
-              <div class="dropdown" id="dropdown">
-                  <a href="#login" class="dropdown-item" id="loginOption">Iniciar Sesión</a>
-                  <a href="#register" class="dropdown-item" id="registerOption">Registrarse</a>
-              </div>
-          </div>
-      </nav>
-  </header>
-
-<div class="config-container">
-  <!-- Alternativas -->
-  <div class="card">
-    <h3>🎯 Alternativas</h3>
-    <p>Agrega las diferentes opciones que quieres evaluar</p>
-
-    <label>Nombre de la alternativa</label>
-    <input type="text" placeholder="Ej: Opción A, Proveedor X, etc.">
-
-    <label>Descripción (opcional)</label>
-    <textarea placeholder="Describe brevemente esta alternativa..."></textarea>
-
-    <button class="btn">+ Agregar Alternativa</button>
+  <!-- Proyecto -->
+  <div class="form-section">
+    <label for="proyecto">Proyecto</label>
+    <select id="proyecto">
+      <option value="1">Proyecto 1</option>
+      <option value="2">Proyecto 2</option>
+      <option value="3">Proyecto 3</option>
+    </select>
   </div>
 
-  <!-- Criterios -->
-  <div class="card">
-    <h3>⚖️ Criterios de Evaluación</h3>
-    <p>Define los criterios y su importancia relativa (peso)</p>
+  <!-- Id -->
+  <div class="form-section">
+    <label for="id">Id</label>
+    <input id="id" type="text" value="1" readonly />
+  </div>
 
-    <label>Nombre del criterio</label>
-    <input type="text" placeholder="Ej: Costo, Calidad, Tiempo, etc.">
+  <!-- Nombre -->
+  <div class="form-section">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" placeholder="Ingrese nombre" />
+  </div>
 
-    <label>Descripción (opcional)</label>
-    <textarea placeholder="Describe qué evalúa este criterio..."></textarea>
-
-    <label>
-      Peso/Importancia: <span id="pesoValue">5</span>
-    </label>
-    <input type="range" min="1" max="10" value="5" id="peso">
-
-    <div class="peso-labels">
-      <span>Menos importante</span>
-      <span>Más importante</span>
-    </div>
-
-    <button class="btn">+ Agregar Criterio</button>
+  <!-- Descripción -->
+  <div class="form-section">
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" placeholder="Ingrese descripción"></textarea>
   </div>
 </div>
