@@ -1,0 +1,35 @@
+<div class="criterios-card">
+  <h2>Criterios</h2>
+
+  <div class="form-section">
+    <label for="proyecto">Proyecto</label>
+    <input id="proyecto" type="number" [(ngModel)]="criterio.id_proyecto" min="1" step="1" oninput="validity.valid||(value='');" required/>
+  </div>
+
+  <div class="form-section">
+    <label for="id_criterio">Criterio</label>
+    <input id="id_criterio" type="number" [(ngModel)]="criterio.id_criterio" min="1" step="1" oninput="validity.valid||(value='');" required/>
+  </div>
+    <div class="form-section">
+        <label for="nombre">Nombre del Criterio</label>
+        <input id="nombre" type="text" [(ngModel)]="criterio.nombre" placeholder="Ingrese nombre" required/>
+    </div>
+
+    <div class="form-section">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" placeholder="Ingrese descripción" [(ngModel)]="criterio.descripcion"></textarea>
+    </div>
+
+    <div class="form-section">
+        <label for="ponderacion">Peso/Importancia: <span id="valor">5</span></label>
+        <input id="ponderacion" type="range" min="1" max="10" value="5" oninput="document.getElementById('valor').innerText = this.value" [(ngModel)]="criterio.ponderacion" />
+        <div class="range-labels">
+            <span>Menos importante</span>
+            <span>Más importante</span>
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button class="guardar-btn" (click)="guardarCriterio()">Guardar</button>
+    </div>
+</div>

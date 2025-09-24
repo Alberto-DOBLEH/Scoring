@@ -1,0 +1,25 @@
+<div class="alternativas-card">
+  <h2>Alternativas</h2>
+
+  <div class="form-section">
+    <label for="proyecto">Proyecto</label>
+    <input id="proyecto" type="number" [(ngModel)]="alternativa.id_proyecto" min="1" step="1" oninput="validity.valid||(value='');" required/>
+  </div>
+
+  <div class="form-section">
+    <label for="id">Id Alternativa</label>
+    <input id="id" type="number" [(ngModel)]="alternativa.id_alternativa" min="1" step="1" oninput="validity.valid||(value='');" required/>
+  </div>
+  <div class="form-section">
+    <label for="nombre">Nombre</label>
+    <input id="nombre" type="text" placeholder="Ingrese nombre" [(ngModel)]="alternativa.nombre" />
+  </div>
+
+  <div class="form-section">
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" placeholder="Ingrese descripción" [(ngModel)]="alternativa.descripcion"></textarea>
+  </div>
+  <div class="btns">
+    <button class="btn" id="guardar" (click)="guardarAlternativa()">Guardar</button>
+  </div>
+</div>

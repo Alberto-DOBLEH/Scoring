@@ -1,0 +1,12 @@
+.page-container {
+  min-height: calc(100dvh - 96px - 80px);
+  padding: 96px 1rem 1rem; /* top padding equals header height */
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    /* mobile header is 80px tall */
+    min-height: calc(100dvh - 80px - 80px);
+    padding: 80px 1rem 1rem;
+  }
+}

@@ -1,0 +1,150 @@
+<header class="header" id="header">
+    <nav class="nav-container">
+        <!-- Sección del logotipo -->
+        <div class="logo-section" (click)="handleLogoClick()">
+            <div class="logo-container">
+                <img src="/logotest.jpg" alt="DeciWeb" />
+            </div>
+        </div>
+
+        <!-- Botón hamburguesa (solo móvil) -->
+        <button class="hamburger" (click)="toggleMobileMenu($event)" [attr.aria-expanded]="isMobileMenuOpen" aria-label="Abrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <!-- Menú de navegación -->
+        <div class="nav-menu">
+            <a routerLink="/inicio" routerLinkActive="active" class="nav-item">
+                <span>Inicio</span>
+            </a>
+            <a routerLink="/proyectos" routerLinkActive="active" class="nav-item">
+                <span>Proyectos</span>
+            </a>
+            <a routerLink="/alter-crit" routerLinkActive="active" class="nav-item">
+                <span>Alternativas</span>
+            </a>
+            <a routerLink="/criterios" routerLinkActive="active" class="nav-item">
+                <span>Criterios</span>
+            </a>
+            <a routerLink="/pesos" routerLinkActive="active" class="nav-item">
+                <span>Pesos</span>
+            </a>
+            <a routerLink="/matriz-valuada" routerLinkActive="active" class="nav-item">
+                <span>Matriz Valuada</span>
+            </a>
+            <a routerLink="/calculo" routerLinkActive="active" class="nav-item">
+                <span>Cálculo</span>
+            </a>
+        </div>
+
+        <!-- Menú de usuario -->
+        <div class="user-menu" [ngClass]="{ open: isUserMenuOpen }">
+            <button class="user-button" (click)="toggleUserMenu($event)">
+                <div class="user-icon">👤</div>
+                <span>{{ isAuthenticated ? currentUser?.name : 'Cuenta' }}</span>
+                <span class="dropdown-arrow">▼</span>
+            </button>
+            <div class="dropdown">
+                <ng-container *ngIf="!isAuthenticated; else authMenu">
+                    <a href="javascript:void(0)" class="dropdown-item" (click)="openModal('login')">Iniciar Sesión</a>
+                    <a href="javascript:void(0)" class="dropdown-item" (click)="openModal('register')">Registrarse</a>
+                </ng-container>
+                <ng-template #authMenu>
+                    <a href="javascript:void(0)" class="dropdown-item">Mi Perfil</a>
+                    <a href="javascript:void(0)" class="dropdown-item">Configuración</a>
+                    <a href="javascript:void(0)" class="dropdown-item" (click)="handleLogout()">Cerrar Sesión</a>
+                </ng-template>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Overlay y cajón lateral para navegación móvil -->
+    <div class="mobile-overlay" [ngClass]="{ show: isMobileMenuOpen }">
+        <aside id="mobile-drawer" class="mobile-drawer" tabindex="-1" role="dialog" (click)="$event.stopPropagation()">
+            <div class="mobile-drawer-header">
+                <div class="logo-section" (click)="handleLogoClick()">
+                    <div class="logo-container">
+                        <img src="/logotest.jpg" alt="DeciWeb" />
+                    </div>
+                </div>
+                <button class="close-drawer" (click)="closeMobileMenu()" aria-label="Cerrar menú">×</button>
+            </div>
+            <nav class="mobile-nav">
+                <a routerLink="/proyectos" routerLinkActive="active" (click)="closeMobileMenu()" class="nav-item">Proyectos</a>
+                <a routerLink="/alternativas" routerLinkActive="active" (click)="closeMobileMenu()" class="nav-item">Alternativas y Criterios</a>
+                <a routerLink="/pesos" routerLinkActive="active" (click)="closeMobileMenu()" class="nav-item">Pesos</a>
+                <a routerLink="/matriz-valuada" routerLinkActive="active" (click)="closeMobileMenu()" class="nav-item">Matriz Valuada</a>
+                <a routerLink="/calculo" routerLinkActive="active" (click)="closeMobileMenu()" class="nav-item">Cálculo</a>
+            </nav>
+        </aside>
+    </div>
+</header>
+
+<!-- Modal de autenticación (login/registro) -->
+<div class="modal-overlay" [ngClass]="{ show: isModalOpen }" (click)="closeModalOnOverlay($event)">
+    <div class="modal">
+        <div class="modal-header">
+            <button class="close-button" (click)="closeModal()">×</button>
+            <h2 class="modal-title">DeciWeb</h2>
+            <p class="modal-subtitle">Accede a tu plataforma de decisiones</p>
+        </div>
+
+        <div class="modal-body">
+            <div class="tab-buttons">
+                <button class="tab-button" [ngClass]="{ active: currentForm === 'login' }" (click)="switchToLogin()">
+          Iniciar Sesión
+        </button>
+                <button class="tab-button" [ngClass]="{ active: currentForm === 'register' }" (click)="switchToRegister()">
+          Registrarse
+        </button>
+                <div class="tab-indicator" [ngClass]="{ register: currentForm === 'register' }"></div>
+            </div>
+
+            <div class="form-container">
+                <!-- Login Form -->
+                <form class="form" [ngClass]="{ 'slide-out': currentForm !== 'login' }" [formGroup]="loginForm" (ngSubmit)="handleLogin()">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" formControlName="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Contraseña</label>
+                        <input type="password" id="loginPassword" formControlName="password" required />
+                    </div>
+                    <button type="submit" class="submit-button" [disabled]="isLoading">
+            {{ isLoading ? 'Procesando...' : 'Iniciar Sesión' }}
+          </button>
+                </form>
+
+                <!-- Register Form -->
+                <form class="form" [ngClass]="{ 'slide-out': currentForm !== 'register', 'slide-in': currentForm === 'register' }" [formGroup]="registerForm" (ngSubmit)="onRegister()">
+                    <div class="form-group">
+                        <label for="registerFirstName">Nombre(s)</label>
+                        <input type="text" id="registerFirstName" formControlName="firstName" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="registerLastName1">Primer Apellido</label>
+                        <input type="text" id="registerLastName1" formControlName="lastName1" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="registerLastName2">Segundo Apellido</label>
+                        <input type="text" id="registerLastName2" formControlName="lastName2" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" formControlName="email" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Contraseña</label>
+                        <input type="password" id="registerPassword" formControlName="password" required />
+                    </div>
+                    <button type="submit" class="submit-button" [disabled]="isLoading">
+            {{ isLoading ? 'Procesando...' : 'Crear Cuenta' }}
+          </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
