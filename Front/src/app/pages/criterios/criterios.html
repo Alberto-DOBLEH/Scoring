@@ -21,8 +21,8 @@
     </div>
 
     <div class="form-section">
-        <label for="ponderacion">Peso/Importancia: <span id="valor">5</span></label>
-        <input id="ponderacion" type="range" min="1" max="10" value="5" oninput="document.getElementById('valor').innerText = this.value" [(ngModel)]="criterio.ponderacion" />
+        <label for="ponderacion">Peso/Importancia: <span id="valor">3</span></label>
+        <input id="ponderacion" type="range" min="1" max="5" value="3" oninput="document.getElementById('valor').innerText = this.value" [(ngModel)]="criterio.ponderacion" />
         <div class="range-labels">
             <span>Menos importante</span>
             <span>Más importante</span>
@@ -32,4 +32,30 @@
     <div class="form-actions">
         <button class="guardar-btn" (click)="guardarCriterio()">Guardar</button>
     </div>
+  
+  
+  
+  
+  <!-- Tabla de Ponderacion, perdon por usar tu espacio pero aqui tiene que ir la tabla -->
+    <div>
+    
+    <br><button class="guardar-btn" (click)="mostrarPonderacion()">Cargar Criterios</button>
+    <table border="1" class="criterios-table">
+      <thead>
+        <tr>
+          <th>No1.</th>
+          <th>Criterios</th>
+          <th>Ponderacion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let criterio of criterios; let i = index">
+          <td>{{ i + 1}}</td>
+          <td>{{criterio.descripcion}}</td>
+          <td>{{criterio.ponderacion}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>

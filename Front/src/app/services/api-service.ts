@@ -17,4 +17,8 @@ export class ApiService {
   enviarDatosCriterios(payload: any) {
     return this.http.post(`${this.baseURL}/createcriterio`, payload);
   }
+  //GET: Obtener la ponderación de un criterio por su ID
+  getcriterio(id_proyecto: number) {
+    return this.http.get<any>(`${this.baseURL}/getcriterio/${id_proyecto}`);
+  }
 }
