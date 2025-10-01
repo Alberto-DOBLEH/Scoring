@@ -6,7 +6,7 @@
   border-radius: 16px;
   background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-  font-family: "Segoe UI", Tahoma, sans-serif;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
   transition: transform 0.2s ease-in-out;
   margin-top: 10rem;
 }

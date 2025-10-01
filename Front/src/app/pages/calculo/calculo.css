@@ -1,3 +1,69 @@
-h1 {
-    margin: .5rem 0 1rem;
+h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: #1b5e20;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container_principal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 20px;
+}
+
+.container_principal > * {
+  flex: 1;
+}
+
+p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 22px;
+  color: #1b5e20;
+}
+.izquierda {
+  border-radius: 16px;
+}
+
+.derecha {
+  border-radius: 16px;
+}
+.abajo {
+  display: flex;
+  max-width: fit-content;
+  text-align: left;
+  margin: 20px;
+  padding: 20px;
+}
+table {
+  margin: 20px auto;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+  border: 1.5px solid #66bb6a;
+  border-radius: 16px;
+  background: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th {
+  background-color: #66bb6a;
+  color: #ffffff;
+  font-weight: bold;
+  padding: 12px;
+  border-bottom: 2px solid #4caf50;
+  border-right: 1px solid #ffffff;
+}
+
+td {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
 }
