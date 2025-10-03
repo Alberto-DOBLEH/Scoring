@@ -1,1 +1,40 @@
-h1 { margin: .5rem 0 1rem; }
+/* tabla de ponderacion */
+.criterios-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+  background: #f1f8e9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(46, 125, 50, 0.08);
+}
+
+.criterios-table th, .criterios-table td {
+  padding: 12px 10px;
+  text-align: left;
+}
+
+.criterios-table th {
+  background: #2e7d32;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.criterios-table tr {
+  border-bottom: 1.5px solid #c8e6c9;
+}
+
+.criterios-table tr:last-child {
+  border-bottom: none;
+}
+
+.criterios-table td {
+  color: #1b5e20;
+  font-size: 14px;
+}
+
+.criterios-table tr:hover {
+  background: #dcedc8;
+  transition: background 0.2s;
+}

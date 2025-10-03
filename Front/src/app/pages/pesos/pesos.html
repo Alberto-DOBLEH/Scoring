@@ -1,2 +1,30 @@
 <h1>Pesos</h1>
 <p>Página de pesos.</p>
+
+<div>
+  <button class="guardar-btn" (click)="guardarPesos()">Guardar</button>
+
+  <table border="1" class="criterios-table">
+    <thead>
+      <tr>
+        <th>No.</th>
+        <th>Criterios</th>
+        <th>Peso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let criterio of criterios; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ criterio.descripcion }}</td>
+        <td>
+          <input
+            type="number"
+            [(ngModel)]="criterio.peso"
+            placeholder="Peso"
+            required
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
