@@ -16,7 +16,7 @@ export class CriteriosPage {
     id_criterio: '',
     nombre: '',
     descripcion: '',
-    ponderacion: 3
+    ponderacion: 1
   };
 
   criterios: any[] = [];
@@ -24,6 +24,13 @@ export class CriteriosPage {
   constructor(private apiService: ApiService) {}
 
   guardarCriterio() {
+    if (
+      !this.criterio.id_proyecto ||
+      !this.criterio.id_criterio ||
+      !this.criterio.nombre.trim()) {
+      alert('Por favor completa todos los campos obligatorios (excepto descripción).');
+      return;
+    }
     this.apiService.enviarDatosCriterios(this.criterio).subscribe({
       next: (response) => {
         console.log('Criterio guardado:', response);
