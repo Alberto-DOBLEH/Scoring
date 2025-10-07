@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class CalculoPage {
   matriz_valuada: Alternativa[] = [
-    { nombre: 'Corrolla', score: [9, 9, 9, 9, 9], total: 0 },
+    { nombre: 'Corrolla', score: [1, 1, 1, 1, 1], total: 0 },
     { nombre: 'Camry', score: [9, 6, 7, 9, 7], total: 0 },
     { nombre: 'Monza', score: [4, 9, 4, 3, 9], total: 0 },
     { nombre: 'Grand AM', score: [4, 9, 4, 9, 9], total: 0 },
@@ -44,6 +44,7 @@ export interface Totales {
   total_score: number;
 }
 
+// ------ pasarlo al back
 export function calculo_total(alternativas: Alternativa[]): Totales[] {
   let totales: Totales[] = [];
   for (const alternativa of alternativas) {
