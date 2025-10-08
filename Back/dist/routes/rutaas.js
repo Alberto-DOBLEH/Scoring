@@ -31,4 +31,5 @@ router.post("/createranking", controladores_1.createranking); //añade ranking
 router.get("/getranking/:id_ranking", controladores_1.getranking); //lista el ranking de un proyecto
 router.delete("/deleteranking/:id_ranking", controladores_1.deleteranking); //elimina un ranking
 router.put("/editranking", controladores_1.editranking); //edita el ranking
+router.get("/getAllIDs", controladores_1.getAllIDs);
 exports.default = router;

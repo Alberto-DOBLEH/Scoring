@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api-service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'CalculoPage',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './calculo.html',
   styleUrls: ['./calculo.css'],
 })
@@ -16,12 +18,27 @@ export class CalculoPage implements OnInit {
   textoFinal: string = '';
   Criterios_Con_Peso: Criterio[] = [];
 
-  private idProyecto: number = 1;
+  proyectosIds: number[] = [];
+  selectedId?: number;
+
+  //private idProyecto: number = 1;
 
   constructor(private satisfaccionService: ApiService) {}
 
   ngOnInit() {
-    this.cargarDatos(this.idProyecto);
+    this.satisfaccionService.getAllIDs().subscribe({
+      next: (ids) => {
+        this.proyectosIds = ids;
+      },
+      error: (err) => console.error('Error cargando IDs:', err),
+    });
+  }
+
+  onSeleccionar(event: Event) {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedId = Number(selectElement.value);
+    this.cargarDatos(this.selectedId);
+    // console.log(this.selectedId);
   }
 
   cargarDatos(id: number) {

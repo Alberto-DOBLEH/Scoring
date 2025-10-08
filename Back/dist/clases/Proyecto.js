@@ -43,6 +43,22 @@ class Proyecto {
             }
         });
     }
+    obtenerIDs() {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const proyectos = yield Proyectomodel_1.default.findAll({
+                    attributes: ['id_proyecto'], // solo selecciona el id
+                    raw: true,
+                });
+                // mapear a un array de solo ids
+                return proyectos.map((p) => p.id_proyecto);
+            }
+            catch (error) {
+                console.error(error);
+                throw new Error("Error al obtener los IDs de los proyectos");
+            }
+        });
+    }
     eliminar(id_proyecto) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
