@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Satisfaccion = void 0;
 const Satisfaccionmodel_1 = __importDefault(require("../models/Satisfaccionmodel"));
+const Alternativamodel_1 = __importDefault(require("../models/Alternativamodel"));
+const criteriomodel_1 = __importDefault(require("../models/criteriomodel"));
 class Satisfaccion {
     añadir(body) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -31,15 +33,30 @@ class Satisfaccion {
     obtener(id_proyecto) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield Satisfaccionmodel_1.default.findOne({
+                return yield Satisfaccionmodel_1.default.findAll({
                     where: {
-                        id_proyecto: id_proyecto //lista de la tabla
-                    }
+                        id_proyecto: id_proyecto,
+                    },
+                    include: [
+                        {
+                            model: Alternativamodel_1.default,
+                            as: "alternativa",
+                            attributes: ["nombre"],
+                        },
+                        {
+                            model: criteriomodel_1.default,
+                            as: "criterio",
+                            attributes: ["nombre", "ponderacion"],
+                        },
+                    ],
+                    attributes: ["satisfaccion"],
+                    raw: true,
                 });
+                // Logica para que me regrese un arreglo ya tofdo un chido
             }
             catch (error) {
                 console.error(error);
-                return ("Ha ocurrido un error al buscar la lista");
+                return "Error al recopilar las ponderaciones";
             }
         });
     }
@@ -48,13 +65,13 @@ class Satisfaccion {
             try {
                 return yield Satisfaccionmodel_1.default.destroy({
                     where: {
-                        id_proyecto: id_proyecto
-                    }
+                        id_proyecto: id_proyecto,
+                    },
                 });
             }
             catch (error) {
                 console.log(error);
-                return ("Ha ocurrido un error al eliminar la satisfaccion");
+                return "Ha ocurrido un error al eliminar la satisfaccion";
             }
         });
     }
@@ -63,11 +80,11 @@ class Satisfaccion {
             try {
                 const satisfaccion = yield Satisfaccionmodel_1.default.findByPk(id);
                 yield (satisfaccion === null || satisfaccion === void 0 ? void 0 : satisfaccion.update(body));
-                return ("satisfaccion editada con exito");
+                return "satisfaccion editada con exito";
             }
             catch (error) {
                 console.log(error);
-                return ("error al editar la satisfaccion");
+                return "error al editar la satisfaccion";
             }
         });
     }

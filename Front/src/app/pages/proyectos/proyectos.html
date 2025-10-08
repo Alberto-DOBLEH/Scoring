@@ -1,4 +1,99 @@
+<!-- Formulario para agregar un nuevo proyecto -->
 <div class="proyectos-container">
-    <h1>Proyectos</h1>
-    <p>Administra tus proyectos aquí.</p>
+  <h2>Proyectos</h2>
+  <!-- Input para ingresar el ID del proyecto que se quiere consultar -->
+  <div class="consult-section">
+    <div class="consult-sub-section">
+      <label for="idProyecto">ID del proyecto</label>
+      <input
+        type="number"
+        required
+        (click)="resetarMensajes()"
+        [(ngModel)]="nuevoProyecto.id_proyecto"
+      />
+    </div>
+    <button class="btnConsult" id="consultarProyecto" (click)="validarConsultarProyecto()">
+      Consultar Proyecto
+    </button>
+  </div>
+  <!-- Mensaje de las consultas -->
+  <div class="mensaje">
+    <p [class.color-message-true]="response()" [class.color-message-false]="!response()">
+      {{ mensajeConsultar }}
+    </p>
+  </div>
+
+  <!-- Input para ingresar el nombre del nuevo proyecto -->
+  <div class="form-section">
+    <button class="btnNuevoProyecto" (click)="cambaiarEstadosInput()">
+      @if (activarInputs()){ Cancelar } @else { Nuevo Proyecto }
+    </button>
+    <label for="nombre">Nombre del Proyecto</label>
+    <input
+      type="text"
+      [class.input-enable]="activarInputs()"
+      [class.input-disable]="!activarInputs()"
+      [disabled]="!activarInputs()"
+      (click)="resetarMensajes()"
+      [(ngModel)]="nuevoProyecto.nombre"
+      required
+    />
+  </div>
+
+  <!-- Input para ingresar la descripción del nuevo proyecto -->
+  <div class="form-section">
+    <label for="descripcion">Descripción del Proyecto</label>
+    <textarea
+      name="descripcion"
+      [class.input-enable]="activarInputs()"
+      [class.input-disable]="!activarInputs()"
+      [disabled]="!activarInputs()"
+      (click)="resetarMensajes()"
+      placeholder="Ingrese la descripción del proyecto"
+      [(ngModel)]="nuevoProyecto.descripcion"
+      required
+    ></textarea>
+  </div>
+
+  <!-- Boton para agregar el nuevo proyecto a la BD -->
+  <div class="btns">
+    <button
+      [class.button-enable]="activarInputs()"
+      [class.button-disable]="!activarInputs()"
+      [disabled]="!activarInputs()"
+      (click)="validarCrearProyecto()"
+    >
+      Crear Proyecto
+    </button>
+  </div>
+
+  <!-- Botones para modificar o eliminar el proyecto consltado -->
+  <div class="btns">
+    <button
+      [class.button-enable]="activarBotonesProyecto()"
+      [class.button-disable]="!activarBotonesProyecto()"
+      [disabled]="!activarBotonesProyecto()"
+      (click)="editarProyecto()"
+    >
+      Modificar Proyecto
+    </button>
+    <button
+      [class.button-enable]="activarBotonesProyecto()"
+      [class.button-disable]="!activarBotonesProyecto()"
+      [disabled]="!activarBotonesProyecto()"
+      [disabled]="!nuevoProyecto.nombre"
+      (click)="eliminarProyecto()"
+    >
+      Eliminar Proyecto
+    </button>
+  </div>
+  <!-- Mensaje de confirmación -->
+  <div class="mensaje">
+    <p [class.color-message-true]="response()" [class.color-message-false]="!response()">
+      {{ mensajeCrear }}
+    </p>
+    <p [class.color-message-true]="response()" [class.color-message-false]="!response()">
+      {{ mensajeOperacion }}
+    </p>
+  </div>
 </div>
