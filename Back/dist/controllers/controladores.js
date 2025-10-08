@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.editranking = exports.deleteranking = exports.createranking = exports.getranking = exports.editsatisfaccion = exports.deletesatisfaccion = exports.createsatisfaccion = exports.getsatisfaccion = exports.editproyecto = exports.deleteproeycto = exports.createproyecto = exports.getproyectos = exports.editcriterio = exports.deletecriterio = exports.createcriterio = exports.getcriterios = exports.editalternativa = exports.deletealternativa = exports.createalternativa = exports.getalternativas = exports.prueba = void 0;
+exports.editranking = exports.deleteranking = exports.createranking = exports.getranking = exports.editsatisfaccion = exports.deletesatisfaccion = exports.createsatisfaccion = exports.getsatisfaccion = exports.editproyecto = exports.deleteproeycto = exports.createproyecto = exports.getAllIDs = exports.getproyectos = exports.editcriterio = exports.deletecriterio = exports.createcriterio = exports.getcriterios = exports.editalternativa = exports.deletealternativa = exports.createalternativa = exports.getalternativas = exports.prueba = void 0;
 //Aqui va la logica que hay en cada endpoint
 const Alternativa_1 = require("../clases/Alternativa");
 const Criterio_1 = require("../clases/Criterio");
@@ -19,7 +19,7 @@ const Ranking_1 = require("../clases/Ranking");
 const prueba = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("funciona");
     res.json({
-        msg: "simon si funciona"
+        msg: "simon si funciona",
     });
 });
 exports.prueba = prueba;
@@ -37,7 +37,7 @@ const createalternativa = (req, res) => {
     const alternativa = new Alternativa_1.Alternativa();
     const alternativa_añadida = alternativa.añadir(body); //añade alternativas
     res.json({
-        msg: alternativa_añadida
+        msg: alternativa_añadida,
     });
 };
 exports.createalternativa = createalternativa;
@@ -46,7 +46,7 @@ const deletealternativa = (req, res) => {
     const alternativa = new Alternativa_1.Alternativa();
     const eliminado = alternativa.eliminar(parseInt(id));
     res.json({
-        msg: eliminado
+        msg: eliminado,
     });
 };
 exports.deletealternativa = deletealternativa;
@@ -56,7 +56,7 @@ const editalternativa = (req, res) => {
     const alternativa = new Alternativa_1.Alternativa();
     const editado = alternativa.editar(body, parseInt(id_alternativa));
     res.json({
-        msg: editado
+        msg: editado,
     });
 };
 exports.editalternativa = editalternativa;
@@ -74,7 +74,7 @@ const createcriterio = (req, res) => {
     const criterio = new Criterio_1.Criterio();
     const criterio_añadido = criterio.añadir(body); //añade criterios
     res.json({
-        msg: criterio_añadido
+        msg: criterio_añadido,
     });
 };
 exports.createcriterio = createcriterio;
@@ -83,7 +83,7 @@ const deletecriterio = (req, res) => {
     const criterio = new Criterio_1.Criterio();
     const eliminado = criterio.eliminar(parseInt(id));
     res.json({
-        msg: eliminado
+        msg: eliminado,
     });
 };
 exports.deletecriterio = deletecriterio;
@@ -93,7 +93,7 @@ const editcriterio = (req, res) => {
     const criterio = new Criterio_1.Criterio();
     const editado = criterio.editar(body, parseInt(id_criterio));
     res.json({
-        msg: editado
+        msg: editado,
     });
 };
 exports.editcriterio = editcriterio;
@@ -106,32 +106,27 @@ const getproyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     res.json(listaproyectos);
 });
 exports.getproyectos = getproyectos;
+const getAllIDs = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const proyecto = new Proyecto_1.Proyecto();
+    const listaproyectos = yield proyecto.obtenerIDs(); //se listan los proyectos de un usuario especifico
+    res.json(listaproyectos);
+});
+exports.getAllIDs = getAllIDs;
 const createproyecto = (req, res) => {
     const { body } = req;
     const proyecto = new Proyecto_1.Proyecto();
     const proyecto_añadido = proyecto.añadir(body); //añade proyectos
     res.json({
-        msg: proyecto_añadido
+        msg: proyecto_añadido,
     });
 };
 exports.createproyecto = createproyecto;
-const getAllIDs = async (req, res) => {
-    try {
-        const proyecto = new Proyecto_1.Proyecto();
-        const ids = await proyecto.obtenerIDs();
-        res.json(ids);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error al obtener los IDs de los proyectos" });
-    }
-};
-exports.getAllIDs = getAllIDs;
 const deleteproeycto = (req, res) => {
     const { id } = req.params;
     const proyecto = new Proyecto_1.Proyecto();
     const eliminado = proyecto.eliminar(parseInt(id));
     res.json({
-        msg: eliminado
+        msg: eliminado,
     });
 };
 exports.deleteproeycto = deleteproeycto;
@@ -141,7 +136,7 @@ const editproyecto = (req, res) => {
     const proyecto = new Proyecto_1.Proyecto();
     const editado = proyecto.editar(body, parseInt(id_proyecto));
     res.json({
-        msg: editado
+        msg: editado,
     });
 };
 exports.editproyecto = editproyecto;
@@ -159,7 +154,7 @@ const createsatisfaccion = (req, res) => {
     const satisfaccion = new Satisfaccion_1.Satisfaccion();
     const satisfaccion_añadida = satisfaccion.añadir(body); //añade satisfacciones
     res.json({
-        msg: satisfaccion_añadida
+        msg: satisfaccion_añadida,
     });
 };
 exports.createsatisfaccion = createsatisfaccion;
@@ -168,7 +163,7 @@ const deletesatisfaccion = (req, res) => {
     const satisfaccion = new Satisfaccion_1.Satisfaccion();
     const eliminado = satisfaccion.eliminar(parseInt(id));
     res.json({
-        msg: eliminado
+        msg: eliminado,
     });
 };
 exports.deletesatisfaccion = deletesatisfaccion;
@@ -178,7 +173,7 @@ const editsatisfaccion = (req, res) => {
     const satisfaccion = new Satisfaccion_1.Satisfaccion();
     const editado = satisfaccion.editar(body, parseInt(id_proyecto));
     res.json({
-        msg: editado
+        msg: editado,
     });
 };
 exports.editsatisfaccion = editsatisfaccion;
@@ -196,7 +191,7 @@ const createranking = (req, res) => {
     const ranking = new Ranking_1.Ranking();
     const ranking_añadido = ranking.añadir(body); //añade rankings
     res.json({
-        msg: ranking_añadido
+        msg: ranking_añadido,
     });
 };
 exports.createranking = createranking;
@@ -205,7 +200,7 @@ const deleteranking = (req, res) => {
     const ranking = new Ranking_1.Ranking();
     const eliminado = ranking.eliminar(parseInt(id));
     res.json({
-        msg: eliminado
+        msg: eliminado,
     });
 };
 exports.deleteranking = deleteranking;
@@ -215,7 +210,7 @@ const editranking = (req, res) => {
     const ranking = new Ranking_1.Ranking();
     const editado = ranking.editar(body, parseInt(id_ranking));
     res.json({
-        msg: editado
+        msg: editado,
     });
 };
 exports.editranking = editranking;

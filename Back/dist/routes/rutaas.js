@@ -4,6 +4,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 //cada funcion en controladores.ts se debe llamar desde aqui con el endpoint que hayas creado
 const express_1 = require("express");
 const controladores_1 = require("../controllers/controladores");
+const controladores_2 = require("../controllers/controladores");
 const router = (0, express_1.Router)();
 router.get("/", controladores_1.prueba); // prueba de que funciona el servidor
 //CRUD ALTERNATIVAS
@@ -19,6 +20,7 @@ router.put("/editcriterio", controladores_1.editcriterio);
 //CRUD PROYECTOS
 router.post("/createproyecto", controladores_1.createproyecto); //añade proyectos
 router.get("/getproyecto/:id_proyecto", controladores_1.getproyectos); //lista los proyectos de un usuario
+router.get("/getAllIDs/", controladores_2.getAllIDs); // lista todos los proyectos
 router.delete("/deleteproyecto/:id", controladores_1.deleteproeycto); //elimina un proyecto
 router.put("/editproyecto", controladores_1.editproyecto); //edita el proyecto
 //CRUD SATISFACION
@@ -31,5 +33,4 @@ router.post("/createranking", controladores_1.createranking); //añade ranking
 router.get("/getranking/:id_ranking", controladores_1.getranking); //lista el ranking de un proyecto
 router.delete("/deleteranking/:id_ranking", controladores_1.deleteranking); //elimina un ranking
 router.put("/editranking", controladores_1.editranking); //edita el ranking
-router.get("/getAllIDs", controladores_1.getAllIDs);
 exports.default = router;
