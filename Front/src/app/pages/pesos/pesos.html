@@ -1,42 +1,78 @@
 <div class="criterios-card">
   <h2>Asignación de Pesos</h2>
 
-  <table class="criterios-table" *ngIf="criterios.length > 0; else sinCriterios">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Nombre del Criterio</th>
-        <th>Descripción</th>
-        <th>Peso (1-5)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let criterio of criterios; let i = index">
-        <td>{{ i + 1 }}</td>
-        <td>{{ criterio.nombre }}</td>
-        <td>{{ criterio.descripcion }}</td>
-        <td>
-          <select
-            class="peso-select"
-            [(ngModel)]="criterio.peso"
-            (change)="actualizarPeso(criterio)"
-          >
-            <option *ngFor="let valor of [1, 2, 3, 4, 5]" [value]="valor">
-              {{ valor }}
-            </option>
-          </select>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- Campo Proyecto -->
+  <div class="form-section">
+    <label for="proyecto">Proyecto</label>
+    <input
+      id="proyecto"
+      type="number"
+      [(ngModel)]="idProyecto"
+      min="1"
+      step="1"
+      placeholder="Ingrese el ID del proyecto"
+      required
+    />
+  </div>
 
-  <ng-template #sinCriterios>
-    <p style="text-align:center; color:#388e3c; font-weight:500; margin-top:1rem;">
-      No hay criterios disponibles para asignar pesos.
-    </p>
-  </ng-template>
+  <!-- Campo Criterio -->
+  <div class="form-section">
+    <label for="criterio">Criterio</label>
+    <input
+      id="criterio"
+      type="number"
+      [(ngModel)]="idCriterio"
+      min="1"
+      step="1"
+      placeholder="Ingrese el ID del criterio"
+      required
+    />
+  </div>
 
-  <div class="form-actions" *ngIf="criterios.length > 0">
-    <button class="guardar-btn" (click)="guardarPesos()">Guardar Pesos</button>
+  <!-- Campo Peso con barra -->
+  <div class="form-section">
+    <label for="peso">Peso (1–5)</label>
+    <input
+      id="peso"
+      type="range"
+      min="1"
+      max="5"
+      step="1"
+      [(ngModel)]="peso"
+      class="range-slider"
+    />
+    <div class="range-labels">
+      <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+    </div>
+    <p class="peso-actual">Valor seleccionado: <strong>{{ peso }}</strong></p>
+  </div>
+
+  <!-- Botones de acción -->
+  <div class="form-actions">
+    <button class="guardar-btn" (click)="guardarPesos()">Guardar Peso</button>
+  </div>
+
+  <div class="form-actions">
+    <button class="guardar-btn" (click)="cargarPesos()">Cargar Pesos Guardados</button>
+  </div>
+
+  <!-- Tabla -->
+  <div class="tabla-pesos" *ngIf="criterios && criterios.length > 0">
+    <table border="1" class="criterios-table">
+      <thead>
+        <tr>
+          <th>No.</th>
+          <th>Criterio</th>
+          <th>Ponderacion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let criterio of criterios; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ criterio.nombre }}</td>
+          <td>{{ criterio.ponderacion }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

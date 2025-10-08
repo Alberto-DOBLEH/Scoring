@@ -52,6 +52,11 @@ export class ApiService {
   getcriterio(id_proyecto: number) {
     return this.http.get<any>(`${this.baseURL}/getcriterio/${id_proyecto}`);
   }
+
+  //UPDATE: Modificar un criterio
+  editcriterio(data: any) {
+    return this.http.put(`${this.baseURL}/editcriterio`, data);
+  }
   //GET: Obtener los valores de satisfacción por su ID
   getsatisfaccion(id_proyecto: number) {
     return this.http.get<any>(`${this.baseURL}/getsatisfaccion/${id_proyecto}`);
