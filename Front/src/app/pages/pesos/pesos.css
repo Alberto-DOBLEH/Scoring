@@ -1,1 +1,166 @@
-h1 { margin: .5rem 0 1rem; }
+body {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #1b5e20;
+  margin: 0;
+  padding: 0;
+}
+
+.criterios-card {
+  max-width: 560px;
+  margin: 5rem auto;
+  padding: 2.5rem;
+  border-radius: 18px;
+  background: linear-gradient(145deg, #f1f8e9, #dcedc8);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.criterios-card:hover {
+  transform: translateY(-3px);
+}
+
+.criterios-card h2 {
+  text-align: center;
+  margin-bottom: 1.8rem;
+  color: #1b5e20;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.form-section {
+  margin-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #2e7d32;
+  font-size: 0.9rem;
+}
+
+input,
+select {
+  padding: 10px 12px;
+  border: 1.8px solid #81c784;
+  border-radius: 10px;
+  outline: none;
+  font-size: 14px;
+  background: #ffffff;
+  transition: all 0.2s ease-in-out;
+}
+
+input:focus,
+select:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 8px rgba(46, 125, 50, 0.3);
+}
+
+select {
+  cursor: pointer;
+}
+
+.form-actions {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.guardar-btn {
+  background: linear-gradient(135deg, #43a047, #2e7d32);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  width: 100%;
+  box-shadow: 0 6px 20px rgba(46, 125, 50, 0.25);
+  transition: all 0.2s ease;
+}
+
+.guardar-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(46, 125, 50, 0.3);
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+}
+
+.criterios-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.8rem;
+  background: #f1f8e9;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.criterios-table th,
+.criterios-table td {
+  padding: 12px 10px;
+  text-align: left;
+}
+
+.criterios-table th {
+  background: #2e7d32;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.criterios-table tr {
+  border-bottom: 1.5px solid #c8e6c9;
+  transition: background 0.2s;
+}
+
+.criterios-table tr:last-child {
+  border-bottom: none;
+}
+
+.criterios-table td {
+  color: #1b5e20;
+  font-size: 14px;
+}
+
+.criterios-table tr:hover {
+  background: #dcedc8;
+}
+
+.action-btn {
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.action-btn.edit {
+  color: #388e3c;
+}
+
+.action-btn.delete {
+  color: #c62828;
+}
+
+.action-btn:hover {
+  transform: scale(1.2);
+}
+
+@media (max-width: 600px) {
+  .criterios-card {
+    margin: 2rem 1rem;
+    padding: 1.8rem;
+  }
+
+  .criterios-card h2 {
+    font-size: 1.4rem;
+  }
+
+  .criterios-table th,
+  .criterios-table td {
+    font-size: 13px;
+    padding: 8px;
+  }
+}

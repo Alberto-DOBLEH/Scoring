@@ -3,7 +3,7 @@
   margin: 40px auto;
   padding: 24px;
   border-radius: 16px;
-  background: linear-gradient(135deg, #f1f8e9, #dcedc8);
+   background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
   font-family: "Segoe UI", Tahoma, sans-serif;
   margin-top: 12rem;
@@ -30,7 +30,6 @@ label {
   font-size: 14px;
 }
 
-
 input,
 select {
   padding: 10px 12px;
@@ -50,12 +49,6 @@ select:focus {
 
 select {
   cursor: pointer;
-}
-
-input[type="range"] {
-  width: 100%;
-  accent-color: #2e7d32;
-  margin-top: 6px;
 }
 
 .range-labels {

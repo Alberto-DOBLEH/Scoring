@@ -20,6 +20,13 @@ export class AlterCrit {
   constructor(private apiService: ApiService) {}
 
   guardarAlternativa() {
+    if (
+      !this.alternativa.id_proyecto ||
+      !this.alternativa.id_alternativa ||
+      !this.alternativa.nombre.trim()) {
+      alert('Por favor completa todos los campos obligatorios (excepto descripción).');
+      return;
+    }
     this.apiService.enviarDatosAlternativas(this.alternativa).subscribe({
       next: (response) => {
         console.log('Alternativa guardada:', response);
