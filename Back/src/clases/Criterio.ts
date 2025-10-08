@@ -14,7 +14,7 @@ export class Criterio {
 
   async obtener(id_proyecto: number) {
     try {
-      return await Criteriomodel.findAll({
+      return await Criteriomodel.findOne({
         where: {
           id_proyecto: id_proyecto, //lista de la tabla
         },

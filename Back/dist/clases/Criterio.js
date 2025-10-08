@@ -31,7 +31,7 @@ class Criterio {
     obtener(id_proyecto) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield criteriomodel_1.default.findAll({
+                return yield criteriomodel_1.default.findOne({
                     where: {
                         id_proyecto: id_proyecto, //lista de la tabla
                     },
