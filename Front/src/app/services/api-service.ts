@@ -52,4 +52,8 @@ export class ApiService {
   getcriterio(id_proyecto: number) {
     return this.http.get<any>(`${this.baseURL}/getcriterio/${id_proyecto}`);
   }
+  //GET: Obtener los valores de satisfacción por su ID
+  getsatisfaccion(id_proyecto: number) {
+    return this.http.get<any>(`${this.baseURL}/getsatisfaccion/${id_proyecto}`);
+  }
 }
