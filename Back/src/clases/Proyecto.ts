@@ -25,6 +25,20 @@ export class Proyecto {
     }
   }
 
+  async obtenerIDs() {
+    try {
+      const proyectos = await Proyectomodel.findAll({
+        attributes: ['id_proyecto'], // solo selecciona el id
+        raw: true,
+      });
+      // mapear a un array de solo ids
+      return proyectos.map((p: any) => p.id_proyecto);
+    } catch (error) {
+      console.error(error);
+      throw new Error("Error al obtener los IDs de los proyectos");
+    }
+  }
+
   async eliminar(id_proyecto: number) {
     try {
       return await Proyectomodel.destroy({

@@ -115,6 +115,17 @@ const createproyecto = (req, res) => {
     });
 };
 exports.createproyecto = createproyecto;
+const getAllIDs = async (req, res) => {
+    try {
+        const proyecto = new Proyecto_1.Proyecto();
+        const ids = await proyecto.obtenerIDs();
+        res.json(ids);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error al obtener los IDs de los proyectos" });
+    }
+};
+exports.getAllIDs = getAllIDs;
 const deleteproeycto = (req, res) => {
     const { id } = req.params;
     const proyecto = new Proyecto_1.Proyecto();

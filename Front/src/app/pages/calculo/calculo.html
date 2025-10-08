@@ -1,57 +1,70 @@
 <div class="container_principal">
-  <!-- Sección izquierda-->
-  <section class="izquierda">
-    <h2>Matriz score</h2>
-    <!--Matriz Valuada-->
-    <table>
-      <thead>
-        <tr>
-          <th>Alternativas</th>
-          @for (criterio of criterios; track $index) {
-          <th>{{ criterio.nombre }}</th>
-          }
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (alt of matriz_valuada; track alt.nombre) {
-        <tr>
-          <td>{{ alt.nombre }}</td>
-          @for (p of alt.score; track $index) {
-          <td>{{ p }}</td>
-          }
-          <td>{{ alt.total }}</td>
-        </tr>
-        }
-      </tbody>
-    </table>
-  </section>
+  <!-- Filtro -->
+  <div class="selector-centro">
+    <label for="proyecto">Proyecto:</label>
+    <select id="proyecto" (change)="onSeleccionar($event)">
+      <option value="" disabled selected>Seleccionar</option>
+      <option *ngFor="let id of proyectosIds" [value]="id">
+        Proyecto {{ id }}
+      </option>
+    </select>
+  </div>
 
-  <!-- Sección derechaza-->
-  <section class="derecha">
-    <h2>Tabla de resultados</h2>
-    <!---Tabla de resultados-->
-    <table>
-      <thead>
-        <tr>
-          <th>No.</th>
-          <th>Alternativas</th>
-          <th>Totales</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (alt of resultado; track $index) {
-        <tr>
-          <td>{{ $index + 1 }}</td>
-          <td>{{ alt.nombre }}</td>
-          <td>{{ alt.total_score }}</td>
-        </tr>
-        }
-      </tbody>
-    </table>
-  </section>
+  <!-- Contenedor de tablas -->
+  <div class="tablas-container">
+    <!-- Sección izquierda -->
+    <section class="izquierda">
+      <h2>Matriz Score</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Alternativas</th>
+            @for (criterio of criterios; track $index) {
+            <th>{{ criterio.nombre }}</th>
+            }
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (alt of matriz_valuada; track alt.nombre) {
+          <tr>
+            <td>{{ alt.nombre }}</td>
+            @for (p of alt.score; track $index) {
+            <td>{{ p }}</td>
+            }
+            <td>{{ alt.total }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Sección derecha -->
+    <section class="derecha">
+      <h2>Tabla de resultados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Alternativas</th>
+            <th>Totales</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (alt of resultado; track $index) {
+          <tr>
+            <td>{{ $index + 1 }}</td>
+            <td>{{ alt.nombre }}</td>
+            <td>{{ alt.total_score }}</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+  </div>
 </div>
-<!--Sección del texto-->
+
+<!-- Texto final -->
 <div class="abajo">
   <p>{{ textoFinal }}</p>
 </div>
