@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api-service';
+import { ApiService, Proyecto } from '../../services/api-service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -18,7 +18,7 @@ export class CalculoPage implements OnInit {
   textoFinal: string = '';
   Criterios_Con_Peso: Criterio[] = [];
 
-  proyectosIds: number[] = [];
+  proyectos: Proyecto[] = [];
   selectedId?: number;
 
   //private idProyecto: number = 1;
@@ -27,8 +27,8 @@ export class CalculoPage implements OnInit {
 
   ngOnInit() {
     this.satisfaccionService.getAllIDs().subscribe({
-      next: (ids) => {
-        this.proyectosIds = ids;
+      next: (data) => {
+        this.proyectos = data;
       },
       error: (err) => console.error('Error cargando IDs:', err),
     });
@@ -38,17 +38,23 @@ export class CalculoPage implements OnInit {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedId = Number(selectElement.value);
     this.cargarDatos(this.selectedId);
-    // console.log(this.selectedId);
+    console.log(this.selectedId);
   }
 
   cargarDatos(id: number) {
     this.satisfaccionService.getsatisfaccion(id).subscribe({
       next: (data) => {
+        // Limpia antes de reasignar
+        this.matriz_valuada = [];
+        this.criterios = [];
+        this.resultado = [];
+        this.pre_resultado = [];
+
         const { alternativas, criterios } = this.mapearDatos(data);
-
-        this.matriz_valuada = alternativas;
-        this.criterios = criterios;
-
+        console.log(alternativas);
+        this.matriz_valuada = [... alternativas];
+        this.criterios = [...criterios];
+        console.log(this.matriz_valuada);
         // Ejecuta los cálculos después de obtener los datos
         this.ejecutarCalculos();
       },

@@ -64,6 +64,6 @@ export class ApiService {
 
   // GET: Obtener todos los IDs de los proyectos
   getAllIDs(){
-    return this.http.get<any>(`${this.baseURL}/getAllIDs`);
+    return this.http.get<{ id_proyecto: number; nombre: string }[]>(`${this.baseURL}/getAllIDs`);
   }
 }

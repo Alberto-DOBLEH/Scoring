@@ -28,11 +28,10 @@ export class Proyecto {
   async obtenerIDs() {
     try {
       const proyectos = await Proyectomodel.findAll({
-        attributes: ['id_proyecto'], // solo selecciona el id
+        attributes: ['id_proyecto', 'nombre'], // selecciona el id y nombre
         raw: true,
       });
-      // mapear a un array de solo ids
-      return proyectos.map((p: any) => p.id_proyecto);
+      return proyectos;
     } catch (error) {
       console.error(error);
       throw new Error("Error al obtener los IDs de los proyectos");

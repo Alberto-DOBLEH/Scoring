@@ -4,8 +4,8 @@
     <label for="proyecto">Proyecto:</label>
     <select id="proyecto" (change)="onSeleccionar($event)">
       <option value="" disabled selected>Seleccionar</option>
-      <option *ngFor="let id of proyectosIds" [value]="id">
-        Proyecto {{ id }}
+      <option *ngFor="let p of proyectos" [value]="p.id_proyecto">
+        Proyecto {{ p.nombre }}
       </option>
     </select>
   </div>
@@ -26,7 +26,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (alt of matriz_valuada; track alt.nombre) {
+          @for (alt of matriz_valuada; track $index) {
           <tr>
             <td>{{ alt.nombre }}</td>
             @for (p of alt.score; track $index) {
