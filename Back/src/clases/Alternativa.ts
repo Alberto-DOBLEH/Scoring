@@ -15,7 +15,7 @@ export class Alternativa {
 
     async obtener(id_proyecto:number){
         try{
-            return await Alternativamodel.findOne({
+            return await Alternativamodel.findAll({
                 where:{
                     id_proyecto:id_proyecto //lista de la tabla
                 }

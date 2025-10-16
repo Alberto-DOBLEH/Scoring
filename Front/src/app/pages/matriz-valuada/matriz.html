@@ -1,2 +1,34 @@
-<h1>Matriz Valuada</h1>
-<p>Página de matriz valuada.</p>
+<div>
+  <h1>Tabla Satisfaccion</h1>
+  <!-- Tabla de Ponderacion -->
+  <div>
+    <div>
+      <select [(ngModel)]="proyectoSeleccionado">
+        <option [ngValue]="null" disabled selected>Selecciona un proyecto</option>
+        <option *ngFor="let proyecto of proyectos" [ngValue]="proyecto.id_proyecto">
+          {{ proyecto.nombre }}
+        </option>
+      </select>
+        <button class="guardar-btn" (click)="generarMatriz()">Cargar proyecto</button>
+        <button class="guardar-btn" (click)="guardarSatisfaccion()">Guardar Matriz</button>
+    </div>
+    <table class="criterios-table">
+      <thead>
+        <tr>
+          <th>Alternativas / Criterios</th>
+          <th *ngFor="let criterio of criterios">{{ criterio.nombre }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let alternativa of alternativas; let i = index">
+          <td>{{ alternativa.nombre }}</td>
+          <td *ngFor="let criterio of criterios">
+            <!-- Celda vacía para rellenar, puedes poner un input si lo necesitas -->
+            <input type="number" [(ngModel)]="alternativa.valores[criterio.id_criterio]" min="0" max="9" />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+  </div>
+</div>

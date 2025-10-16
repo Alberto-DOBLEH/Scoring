@@ -47,11 +47,10 @@ class Proyecto {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const proyectos = yield Proyectomodel_1.default.findAll({
-                    attributes: ['id_proyecto'], // solo selecciona el id
+                    attributes: ['id_proyecto', 'nombre'], // selecciona el id y nombre
                     raw: true,
                 });
-                // mapear a un array de solo ids
-                return proyectos.map((p) => p.id_proyecto);
+                return proyectos;
             }
             catch (error) {
                 console.error(error);

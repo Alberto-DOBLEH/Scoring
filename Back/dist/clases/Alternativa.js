@@ -31,7 +31,7 @@ class Alternativa {
     obtener(id_proyecto) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                return yield Alternativamodel_1.default.findOne({
+                return yield Alternativamodel_1.default.findAll({
                     where: {
                         id_proyecto: id_proyecto //lista de la tabla
                     }
