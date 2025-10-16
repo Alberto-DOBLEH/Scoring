@@ -26,24 +26,4 @@
   
   <!-- Tabla de Ponderacion, perdon por usar tu espacio pero aqui tiene que ir la tabla -->
     <div>
-    
-    <br><button class="guardar-btn" (click)="mostrarPonderacion()">Cargar Criterios</button>
-    <table border="1" class="criterios-table">
-      <thead>
-        <tr>
-          <th>No1.</th>
-          <th>Criterios</th>
-          <th>Ponderacion</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let criterio of criterios; let i = index">
-          <td>{{ i + 1}}</td>
-          <td>{{criterio.descripcion}}</td>
-          <td>{{criterio.ponderacion}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
 </div>
