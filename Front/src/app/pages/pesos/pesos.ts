@@ -1,69 +1,64 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-interface Criterio {
-  id: number;
-  nombre: string;
-  descripcion: string;
-  peso?: number;
-}
+import { ApiService } from '../../services/api-service';
 
 @Component({
   selector: 'app-pesos',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './pesos.html',
   styleUrls: ['./pesos.css'],
+  imports: [CommonModule, FormsModule],
 })
-export class PesosPage implements OnInit {
-  criterios: Criterio[] = [];
-  projectId = 1;
+export class PesosPage {
+  idProyecto: number = 0;
+  idCriterio: number = 0;
+  peso: number = 1;
+  criterios: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private apiService: ApiService) {}
 
-  ngOnInit(): void {
-    this.cargarCriterios();
-  }
+  // 🔹 Cargar todos los criterios del proyecto seleccionado
+  cargarPesos() {
+    if (!this.idProyecto) {
+      alert('Por favor ingrese el ID del proyecto para cargar los criterios.');
+      return;
+    }
 
-  cargarCriterios(): void {
-    const url = `http://localhost:3000/api/criterios/${this.projectId}`;
-    this.http.get<Criterio[]>(url).subscribe({
-      next: (data) => {
-        this.criterios = data;
-        console.log('✅ Criterios cargados:', data);
+    this.apiService.getcriterio(this.idProyecto).subscribe({
+      next: (data: any) => {
+        this.criterios = Array.isArray(data) ? data : [data];
+        console.log('Criterios cargados:', this.criterios);
       },
       error: (err) => {
-        console.error('❌ Error al cargar criterios:', err);
+        console.error('Error al cargar los criterios:', err);
+        alert('No se pudieron cargar los criterios ');
       },
     });
   }
 
-  actualizarPeso(criterio: Criterio): void {
-    console.log(`🟢 Peso actualizado para ${criterio.nombre}: ${criterio.peso}`);
-  }
+  // 🔹 Actualizar el peso de un criterio
+  guardarPesos() {
+    if (!this.idCriterio || !this.peso) {
+      alert('Debe ingresar el ID del criterio y un peso válido antes de guardar.');
+      return;
+    }
 
-  guardarPesos(): void {
-    const url = `http://localhost:3000/api/pesos`;
-    const payload = {
-      projectId: this.projectId,
-      criterios: this.criterios.map((c) => ({
-        id: c.id,
-        peso: c.peso ?? 0,
-      })),
+    const datos = {
+      id_criterio: this.idCriterio,
+      ponderacion: this.peso,
     };
 
-    console.log('📤 Enviando datos:', payload);
-
-    this.http.post(url, payload).subscribe({
-      next: (res) => {
-        console.log('✅ Pesos guardados correctamente:', res);
-        alert('Pesos guardados correctamente ✅');
+    this.apiService.editcriterio(datos).subscribe({
+      next: (res: any) => {
+        console.log('Peso actualizado:', res);
+        alert('Peso actualizado correctamente ');
+        // Opcional: recargar criterios para ver el cambio reflejado
+        this.cargarPesos();
       },
       error: (err) => {
-        console.error('❌ Error al guardar pesos:', err);
-        alert('Error al guardar los pesos 😢');
+        console.error('Error al actualizar el peso:', err);
+        alert('Error al actualizar el peso ');
       },
     });
   }

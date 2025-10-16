@@ -25,6 +25,19 @@ export class Proyecto {
     }
   }
 
+  async obtenerIDs() {
+    try {
+      const proyectos = await Proyectomodel.findAll({
+        attributes: ['id_proyecto', 'nombre'], // selecciona el id y nombre
+        raw: true,
+      });
+      return proyectos;
+    } catch (error) {
+      console.error(error);
+      throw new Error("Error al obtener los IDs de los proyectos");
+    }
+  }
+
   async eliminar(id_proyecto: number) {
     try {
       return await Proyectomodel.destroy({

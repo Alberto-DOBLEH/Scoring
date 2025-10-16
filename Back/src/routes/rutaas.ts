@@ -25,6 +25,8 @@ import {
   editranking,
 } from "../controllers/controladores";
 
+import { getAllIDs } from "../controllers/controladores";
+
 const router = Router();
 router.get("/", prueba); // prueba de que funciona el servidor
 
@@ -43,6 +45,7 @@ router.put("/editcriterio", editcriterio);
 //CRUD PROYECTOS
 router.post("/createproyecto", createproyecto); //añade proyectos
 router.get("/getproyecto/:id_proyecto", getproyectos); //lista los proyectos de un usuario
+router.get("/getAllIDs/", getAllIDs); // lista todos los proyectos
 router.delete("/deleteproyecto/:id", deleteproeycto); //elimina un proyecto
 router.put("/editproyecto", editproyecto); //edita el proyecto
 

@@ -2,10 +2,10 @@ import Satisfaccionmodel from "../models/Satisfaccionmodel";
 import Alternativamodel from "../models/Alternativamodel";
 import Criteriomodel from "../models/criteriomodel";
 
-export interface Criterios {
-  nombre: string;
-  peso: number;
-}
+// export interface Criterios {
+//   nombre: string;
+//   peso: number;
+// }
 
 export class Satisfaccion {
   async añadir(body: any) {
